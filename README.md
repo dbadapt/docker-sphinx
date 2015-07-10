@@ -39,7 +39,9 @@ docker run -i -t -v <HOST_DOC_DIR>:/doc ndd-docker-sphinx
 You should now be in the `/doc` directory, otherwise just `cd /doc`.
 
 To create a new Sphinx project, call `sphinx-quickstart`.
+
 To create a PDF document, call `make latexpdf`.
+
 To create a HTML document, call `make html`.
 
 
