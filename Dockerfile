@@ -11,7 +11,8 @@ MAINTAINER David DIDIER
 RUN apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python-pip
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y texlive-latex-recommended texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+### this line adds 1.5 Go to the image!
+### RUN DEBIAN_FRONTEND=noninteractive apt-get install -y texlive-latex-recommended texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
 
 RUN pip install 'Sphinx >= 1.3.0, < 1.4.0'
 RUN pip install 'alabaster'
