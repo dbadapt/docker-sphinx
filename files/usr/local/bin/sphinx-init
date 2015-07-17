@@ -30,7 +30,3 @@ fi
 sed -i -e "s/^extensions = \[\]/extensions = [\'rst2pdf.pdfbuilder\']/g" "$configuration"
 
 cat "/usr/local/bin/sphinx-init-conf.py" >> "$configuration"
-
-# ----- Setting files permissions to be writable on the host -------------------
-
-setfacl -d -m o:rwx "$DOC_DIR"

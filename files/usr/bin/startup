@@ -19,7 +19,7 @@ then
 fi
 
 # -----------------------------------------------------------------------------
-# `ds1.d` is for one-off scripts that you wish to run before any startup
+# `startup1.d` is for one-off scripts that you wish to run before any startup
 # such as installing gems, moving a file incase something might go wrong some
 # place or otherwise just any standard script.
 #

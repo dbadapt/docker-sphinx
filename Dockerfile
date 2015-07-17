@@ -25,5 +25,6 @@ VOLUME $DOC_DIR
 
 WORKDIR $DOC_DIR
 
-COPY files/usr/bin/*       /usr/bin/
-COPY files/usr/local/bin/* /usr/local/bin/
+COPY files/etc/startup1.d/* /etc/startup1.d/
+COPY files/usr/bin/*        /usr/bin/
+COPY files/usr/local/bin/*  /usr/local/bin/
