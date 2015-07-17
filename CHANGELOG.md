@@ -3,6 +3,7 @@
 ## Version 0.3.1
 
 - Fix missing `acl` package
+- Fix configuration file location
 
 ## Version 0.3.0
 
