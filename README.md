@@ -45,9 +45,9 @@ You should now be in the `/doc` directory, otherwise just `cd` to `/doc`.
 
 To create a new Sphinx project, call `sphinx-init`.
 
-To create a HTML documents, call `make html`.
+To create HTML documents, call `make html`.
 
-To create a PDF documents, call `make pdf`.
+To create a PDF document, call `make pdf`.
 
 To watch changes and create HTML documents, call `make livehtml`.
 
