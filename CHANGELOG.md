@@ -1,5 +1,9 @@
 # NDD Docker Sphinx
 
+## Version 0.3.1
+
+- Fix missing `acl` package
+
 ## Version 0.3.0
 
 - Rebase image upon [envygeeks/ubuntu](https://github.com/envygeeks/docker-ubuntu)

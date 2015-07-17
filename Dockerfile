@@ -10,7 +10,7 @@ MAINTAINER David DIDIER
 
 RUN apt-get update
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python-dev python-pip
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y acl python-dev python-pip
 
 RUN pip install 'Sphinx                 >= 1.3.0, < 1.4.0'
 RUN pip install 'alabaster              >= 0.7.0, < 0.8.0'
