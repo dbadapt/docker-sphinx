@@ -1,0 +1,107 @@
+#!/bin/bash -e
+echo "Starting services."
+user_context=
+
+# -----------------------------------------------------------------------------
+# If we detect a command coming in we switch to user mode where we silence
+# most startup messages and run their command, in this mode you can unsilence
+# it all if you want by sending $VERBOSE_STARTUP=anything.
+# -----------------------------------------------------------------------------
+
+if [[ ! -z "$@" ]]
+then
+  # So you can unsilence it all.
+  if [[ -z "$VERBOSE_STARTUP" ]]
+    then exec 1>/dev/null
+  fi
+
+  user_context=true
+fi
+
+# -----------------------------------------------------------------------------
+# `ds1.d` is for one-off scripts that you wish to run before any startup
+# such as installing gems, moving a file incase something might go wrong some
+# place or otherwise just any standard script.
+#
+# It should not hold any foreground processes and should always exit.
+# -----------------------------------------------------------------------------
+
+for f in /etc/startup1.d/*; do
+  if [[ -f "$f" ]] && [[ -x "$f" ]]
+  then
+    $f "$@" || exit 1
+  fi
+done
+
+# -----------------------------------------------------------------------------
+
+run-stop() {
+  if [[ ! -z "$(dir /etc/startup$1.d 2>/dev/null)" ]]
+  then
+    for f in /etc/startup$1.d/*; do
+      sv stop $f
+    done
+  fi
+}
+
+# -----------------------------------------------------------------------------
+
+trap '{
+  echo "Stopping services."
+  if [[ ! -z "$user_context" ]]
+    then exec 1>/dev/null
+  fi
+
+  for f in /etc/shutdown.d/*; do
+    if [[ -f "$f" ]] && [[ -x "$f" ]]
+    then
+      $f
+    fi
+  done
+
+  run-stop 2
+  run-stop 3
+  trap - EXIT
+  exit 0
+}' \
+EXIT QUIT TERM INT
+
+# -----------------------------------------------------------------------------
+# startup2.d is for the base ubuntu image services, they are started before
+# any other service and are maintained inside of the envygeeks/ubuntu, it is
+# like this so that if you ps quickly, you can see exactly what comes from
+# where (such as: comes from ubuntu or myimg.)
+#
+# startup3.d is for the image using docker/ubuntu or any sub-image thereof,
+# so if you have a redis image, you would place the redis startup file inside
+# of startup3 because it's the third stage of startup.
+# -----------------------------------------------------------------------------
+
+runsvdir -P /etc/startup2.d &!
+runsvdir -P /etc/startup3.d &!
+wait_pid=$!
+
+# -----------------------------------------------------------------------------
+# You can optionally provide a /usr/bin/default command, so if a user does
+# not send a command, and you want to maintain clean source you would create
+# this file and we would run it if we get no `$@`
+# -----------------------------------------------------------------------------
+
+if [[ ! -z "$user_context" ]]
+then
+  touch /etc/user-context
+  chmod uog+r /etc/user-context
+
+  # https://github.com/envygeeks/docker-ubuntu/issues/1
+  [[ "$TERM" == "xterm" ]] && exec 1>/dev/tty
+
+  "$@"
+  exit $?
+else
+  if [[ -x /usr/bin/default ]]
+  then exec default
+  else
+    wait $wait_pid
+    exit 0
+  fi
+fi

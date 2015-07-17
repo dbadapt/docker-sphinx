@@ -2,12 +2,14 @@
 
 A Docker image for the [Sphinx documentation](http://sphinx-doc.org) builder.
 
-The image is based upon `Debian 8.1` and contains:
+The image is based upon [envygeeks/ubuntu](https://github.com/envygeeks/docker-ubuntu) which is an `Ubuntu 15.04`.
 
-- The Sphinx documentation builder
-- The recommended [HTML themes](http://docs.writethedocs.org/tools/sphinx-themes)
+The image contains:
 
-Note that there is no Latex nor PDF support because that would add 1.5 Go to the image.
+- The Sphinx documentation builder ([sphinx-doc](http://sphinx-doc.org))
+- The Sphinx documentation watcher ([sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild))
+- The Sphinx documentation themes ([sphinx-themes](http://docs.writethedocs.org/tools/sphinx-themes))
+- A reStructuredText to PDF converter ([rst2pdf](https://github.com/rst2pdf/rst2pdf))
 
 
 
@@ -33,18 +35,25 @@ docker pull ddidier/ndd-docker-sphinx
 
 The documentation directory must be mounted as a volume under `/doc`:
 
+### Interactive
+
 ```
-docker run -i -t -v <HOST_DOC_DIR>:/doc ndd-docker-sphinx
+docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/ndd-docker-sphinx
 ```
 
-You should now be in the `/doc` directory, otherwise just `cd /doc`.
+You should now be in the `/doc` directory, otherwise just `cd` to `/doc`.
 
-To create a new Sphinx project, call `sphinx-quickstart`.
+To create a new Sphinx project, call `sphinx-init`.
 
-To create a HTML document, call `make html`.
+To create a HTML documents, call `make html`.
 
+To create a PDF documents, call `make pdf`.
 
+To watch changes and create HTML documents, call `make livehtml`.
 
-## Acknowledgments
+### Non interactive
 
-Forked from [headstar/sphinx-doc-docker](https://github.com/headstar/sphinx-doc-docker). Thank you!
+```
+docker run -i -v <HOST_DOC_DIR>:/doc ddidier/ndd-docker-sphinx make html
+docker run -i -v <HOST_DOC_DIR>:/doc ddidier/ndd-docker-sphinx make pdf
+```
