@@ -2,7 +2,7 @@
 
 # ----- Generating skeleton ----------------------------------------------------
 
-sphinx-quickstart --makefile --no-batchfile
+sphinx-quickstart --makefile --no-batchfile "$@"
 
 # ----- Adding 'livehtml' and 'pdf' builders to Makefile -----------------------
 

@@ -33,7 +33,23 @@ docker pull ddidier/ndd-docker-sphinx
 
 ## Usage
 
-The documentation directory must be mounted as a volume under `/doc`:
+The documentation directory on the host `<HOST_DOC_DIR>` must be mounted as a volume under `/doc` in the container.
+
+Use `-v <HOST_DOC_DIR>:/doc` to use a specific documentation directory or `-v $(spec):/doc` to use the current directory as the documentation directory.
+
+### Initialisation
+
+Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory. You should however use the provided `sphinx-init` script which first calls `sphinx-quickstart` then configures the provided extensions.
+
+```
+docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/ndd-docker-sphinx sphinx-init
+```
+
+All arguments accepted by [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) are passed to `sphinx-init`. For example:
+
+```
+docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/ndd-docker-sphinx sphinx-init --project my-documentation
+```
 
 ### Interactive
 
