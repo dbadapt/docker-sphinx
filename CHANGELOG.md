@@ -4,6 +4,7 @@
 
 - Fix missing `acl` package
 - Fix configuration file location
+- Fix `sphinx-autobuild` configuration
 - Add parameters passing to `sphinx-init`
 
 ## Version 0.3.0

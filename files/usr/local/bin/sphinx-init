@@ -12,7 +12,7 @@ touch "$makefile"
 
 echo    ""                                                                   >> "$makefile"
 echo    "livehtml:"                                                          >> "$makefile"
-echo -e "\t\$(SPHINXBUILD) -b html \$(ALLSPHINXOPTS) \$(BUILDDIR)/html"      >> "$makefile"
+echo -e "\tsphinx-autobuild -b html \$(ALLSPHINXOPTS) \$(BUILDDIR)/html"     >> "$makefile"
 echo    ""                                                                   >> "$makefile"
 echo    "pdf:"                                                               >> "$makefile"
 echo -e "\t\$(SPHINXBUILD) -b pdf \$(ALLSPHINXOPTS) \$(BUILDDIR)/pdf"        >> "$makefile"
