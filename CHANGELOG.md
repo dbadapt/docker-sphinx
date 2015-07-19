@@ -1,5 +1,9 @@
 # NDD Docker Sphinx
 
+## Version 0.3.2
+
+- Fix `livehtml` target by specifying host address
+
 ## Version 0.3.1
 
 - Fix missing `acl` package
