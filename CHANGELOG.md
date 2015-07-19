@@ -1,8 +1,12 @@
 # NDD Docker Sphinx
 
-## Version 0.3.2
+## Version 0.3.3
 
 - Fix `livehtml` target by specifying host address
+
+## Version 0.3.2
+
+- Fix file permissions
 
 ## Version 0.3.1
 
