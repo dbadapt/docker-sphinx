@@ -65,7 +65,11 @@ To create HTML documents, call `make html`.
 
 To create a PDF document, call `make pdf`.
 
-To watch changes and create HTML documents, call `make livehtml`.
+To watch for changes and create HTML documents dynamically, call `make livehtml` with a port binding:
+
+```
+docker run -i -t -v <HOST_DOC_DIR>:/doc -p 8000:8000 ddidier/ndd-docker-sphinx make livehtml
+```
 
 ### Non interactive
 
