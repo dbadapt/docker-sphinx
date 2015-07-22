@@ -1,5 +1,9 @@
 # NDD Docker Sphinx
 
+## Version 0.3.4 (pending)
+
+- Add the _unselectable prompt_ Sphinx directive ([sphinx-prompt](https://github.com/sbrunner/sphinx-prompt))
+
 ## Version 0.3.3
 
 - Fix `livehtml` target by specifying host address
