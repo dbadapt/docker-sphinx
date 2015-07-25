@@ -71,6 +71,12 @@ To watch for changes and create HTML documents dynamically, call `make livehtml`
 docker run -i -t -v <HOST_DOC_DIR>:/doc -p 8000:8000 ddidier/ndd-docker-sphinx make livehtml
 ```
 
+To trigger a full build while in watch mode, issue from the `<HOST_DOC_DIR>` folder:
+
+```
+rm -rf build && touch source/conf.py
+```
+
 ### Non interactive
 
 ```
