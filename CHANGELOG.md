@@ -1,6 +1,11 @@
 # NDD Docker Sphinx
 
-## Version 0.3.4 (pending)
+## Version 0.4.0
+
+- Rebase upon the official [python:2.7](https://hub.docker.com/_/python/) image
+- Fix files permissions by using the host group of the documentation directory
+
+## Version 0.3.4
 
 - Add the _unselectable prompt_ Sphinx directive ([sphinx-prompt](https://github.com/sbrunner/sphinx-prompt))
 

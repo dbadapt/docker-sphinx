@@ -1,0 +1,22 @@
+#!/bin/bash
+
+TARGET_GID=$(stat -c "%g" $DOC_DIR)
+TARGET_GID_EXISTS=$(cat /etc/group | grep $TARGET_GID | wc -l)
+TARGET_GNAME=sphinx-doc
+TARGET_UNAME=sphinx-doc
+
+if [ $TARGET_GID_EXISTS == "0" ]; then
+    # Create new group using target GID and add sphinx-doc user
+    sudo groupadd -g $TARGET_GID $TARGET_GNAME
+    sudo usermod -a -G $TARGET_GNAME $TARGET_UNAME
+else
+    # GID exists, find group name and add
+    TARGET_GNAME=$(getent group $TARGET_GID | cut -d: -f1)
+    sudo usermod -a -G $TARGET_GNAME $TARGET_UNAME
+fi
+
+if [[ -n "$@" ]]; then
+    "$@"
+else
+    bash
+fi

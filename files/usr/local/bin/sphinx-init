@@ -1,25 +1,25 @@
 #!/bin/bash
 
-# ----- Generating skeleton ----------------------------------------------------
+# ----- Generate skeleton ------------------------------------------------------
 
 sphinx-quickstart --makefile --no-batchfile "$@"
 
-# ----- Adding 'livehtml' and 'pdf' builders to Makefile -----------------------
+# ----- Add 'livehtml' and 'pdf' builders to Makefile --------------------------
 
 makefile="$DOC_DIR/Makefile"
 
 touch "$makefile"
 
-echo    ""                                                                           >> "$makefile"
-echo    "livehtml:"                                                                  >> "$makefile"
-echo -e "\tsphinx-autobuild -b html \$(ALLSPHINXOPTS) \$(BUILDDIR)/html"             >> "$makefile"
-echo    ""                                                                           >> "$makefile"
-echo    "pdf:"                                                                       >> "$makefile"
-echo -e "\t\$(SPHINXBUILD) -b pdf --host 0.0.0.0 \$(ALLSPHINXOPTS) \$(BUILDDIR)/pdf" >> "$makefile"
-echo -e "\t@echo"                                                                    >> "$makefile"
-echo -e "\t@echo \"Build finished. The PDF files are in \$(BUILDDIR)/pdf.\""         >> "$makefile"
+echo    ""                                                                   >> "$makefile"
+echo    "livehtml:"                                                          >> "$makefile"
+echo -e "\tsphinx-autobuild -b html \$(ALLSPHINXOPTS) \$(BUILDDIR)/html"     >> "$makefile"
+echo    ""                                                                   >> "$makefile"
+echo    "pdf:"                                                               >> "$makefile"
+echo -e "\t\$(SPHINXBUILD) -b pdf \$(ALLSPHINXOPTS) \$(BUILDDIR)/pdf"        >> "$makefile"
+echo -e "\t@echo"                                                            >> "$makefile"
+echo -e "\t@echo \"Build finished. The PDF files are in \$(BUILDDIR)/pdf.\"" >> "$makefile"
 
-# ----- Adding PDF extension to configuration ----------------------------------
+# ----- Add PDF extension to configuration -------------------------------------
 
 configuration="$DOC_DIR/conf.py"
 

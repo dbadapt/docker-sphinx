@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# All the files created in this container belong to 'root' from the host
-# point of view. They cannot be deleted. This workaround change all the files
-# permissions in the documentation directory. ACLs take into account all new
-# files created ever after.
-echo "Setting ACLs for directory '$DOC_DIR'"
-setfacl -R -d -m o:rwx "$DOC_DIR"
