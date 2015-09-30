@@ -8,25 +8,46 @@
 FROM       python:2.7
 MAINTAINER David DIDIER
 
-RUN echo "deb     http://httpredir.debian.org/debian jessie contrib non-free" >> /etc/apt/sources.list && \
-    echo "deb-src http://httpredir.debian.org/debian jessie contrib non-free" >> /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends sudo
+RUN echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   >> /etc/apt/sources.list                         && \
+    echo "deb-src http://httpredir.debian.org/debian jessie contrib non-free"   >> /etc/apt/sources.list                         && \
+    echo "deb     http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list && \
+    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list && \
+    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections                && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886                                                   && \
+    apt-get update                                                                                                               && \
+    apt-get install -y --no-install-recommends graphviz oracle-java8-installer sudo                                              && \
+    apt-get autoremove -y                                                                                                        && \
+    rm -rf /var/cache/*                                                                                                          && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN pip install 'Sphinx                 == 1.3.1' \
-                'alabaster              == 0.7.6' \
-                'rst2pdf                == 0.93 ' \
-                'sphinx-autobuild       == 0.5.2' \
-                'sphinx_bootstrap_theme == 0.4.7' \
-                'sphinx-prompt          == 1.0.0' \
-                'sphinx_rtd_theme       == 0.1.8'
+RUN pip install 'Sphinx                         == 1.3.1' \
+                'alabaster                      == 0.7.6' \
+                'rst2pdf                        == 0.93 ' \
+                'sphinx-autobuild               == 0.5.2' \
+                'sphinx_bootstrap_theme         == 0.4.7' \
+                'sphinx-prompt                  == 1.0.0' \
+                'sphinx_rtd_theme               == 0.1.8' \
+                'sphinxcontrib-actdiag          == 0.8.4' \
+                'sphinxcontrib-blockdiag        == 1.5.4' \
+                'sphinxcontrib-exceltable       == 0.2.2' \
+              # 'sphinxcontrib-gnuplot          == 0.1'   \
+                'sphinxcontrib-googleanalytics  == 0.1'   \
+                'sphinxcontrib-googlechart      == 0.2.1' \
+                'sphinxcontrib-googlemaps       == 0.1.0' \
+                'sphinxcontrib-libreoffice      == 0.2'   \
+                'sphinxcontrib-nwdiag           == 0.9.4' \
+                'sphinxcontrib-plantuml         == 0.5'   \
+                'sphinxcontrib-seqdiag          == 0.8.4'
 
 COPY files/usr/local/bin/* /usr/local/bin/
+COPY files/opt/plantuml/*  /opt/plantuml/
 COPY files/etc/sudoers.d/* /etc/sudoers.d/
 
 RUN useradd sphinx-doc && \
     chown root:root /etc/sudoers.d/* && \
     chmod 440 /etc/sudoers.d/*
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 ENV DOC_DIR /doc
 

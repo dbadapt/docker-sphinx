@@ -10,6 +10,18 @@ The image contains:
 - The Sphinx documentation watcher ([sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild))
 - The Sphinx documentation themes ([sphinx-themes](http://docs.writethedocs.org/tools/sphinx-themes))
 - A reStructuredText to PDF converter ([rst2pdf](https://github.com/rst2pdf/rst2pdf))
+- The following pluggins:
+  - sphinx.ext.graphviz
+  - sphinxcontrib-actdiag
+  - sphinxcontrib-blockdiag
+  - sphinxcontrib-nwdiag
+  - sphinxcontrib-seqdiag
+  - sphinxcontrib-exceltable
+  - sphinxcontrib-googleanalytics
+  - sphinxcontrib-googlechart
+  - sphinxcontrib-googlemaps
+  - sphinxcontrib-libreoffice
+  - sphinxcontrib-plantuml
 
 
 
