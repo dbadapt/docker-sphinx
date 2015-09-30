@@ -1,5 +1,25 @@
 # NDD Docker Sphinx
 
+## Version 0.5.0
+
+- Add pluggins:
+  - sphinx.ext.graphviz
+  - sphinxcontrib-actdiag
+  - sphinxcontrib-blockdiag
+  - sphinxcontrib-nwdiag
+  - sphinxcontrib-seqdiag
+  - sphinxcontrib-exceltable
+  - sphinxcontrib-googleanalytics
+  - sphinxcontrib-googlechart
+  - sphinxcontrib-googlemaps
+  - sphinxcontrib-libreoffice
+  - sphinxcontrib-plantuml
+- Add test documentation
+
+## Version 0.4.1
+
+- Fix the live HTML build
+
 ## Version 0.4.0
 
 - Rebase upon the official [python:2.7](https://hub.docker.com/_/python/) image
