@@ -1,19 +1,25 @@
 # NDD Docker Sphinx
 
+## Version 0.6.0
+
+- Add basic Markdow support
+- Update Sphinx and plugins versions
+- Removed `sphinxcontrib-exceltable` because of an incompatibility issue
+
 ## Version 0.5.0
 
 - Add pluggins:
-  - sphinx.ext.graphviz
-  - sphinxcontrib-actdiag
-  - sphinxcontrib-blockdiag
-  - sphinxcontrib-nwdiag
-  - sphinxcontrib-seqdiag
-  - sphinxcontrib-exceltable
-  - sphinxcontrib-googleanalytics
-  - sphinxcontrib-googlechart
-  - sphinxcontrib-googlemaps
-  - sphinxcontrib-libreoffice
-  - sphinxcontrib-plantuml
+  - `sphinx.ext.graphviz`
+  - `sphinxcontrib-actdiag`
+  - `sphinxcontrib-blockdiag`
+  - `sphinxcontrib-nwdiag`
+  - `sphinxcontrib-seqdiag`
+  - `sphinxcontrib-exceltable`
+  - `sphinxcontrib-googleanalytics`
+  - `sphinxcontrib-googlechart`
+  - `sphinxcontrib-googlemaps`
+  - `sphinxcontrib-libreoffice`
+  - `sphinxcontrib-plantuml`
 - Add test documentation
 
 ## Version 0.4.1
