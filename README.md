@@ -10,6 +10,7 @@ The image contains:
 - The Sphinx documentation watcher ([sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild))
 - The Sphinx documentation themes ([sphinx-themes](http://docs.writethedocs.org/tools/sphinx-themes))
 - A reStructuredText to PDF converter ([rst2pdf](https://github.com/rst2pdf/rst2pdf))
+- A Markdown to reStructuredText converter ([recommonmark](https://github.com/rtfd/recommonmark))
 - The following pluggins:
     - sphinx.ext.graphviz
     - [sphinx-prompt](https://pypi.python.org/pypi/sphinx-prompt)
@@ -125,3 +126,17 @@ extensions = [
     'sphinxcontrib.seqdiag',
 ]
 ```
+
+To use Markdown inside of Sphinx, add this to your `conf.py`:
+
+```python
+from recommonmark.parser import CommonMarkParser
+
+source_parsers = {
+    '.md': CommonMarkParser,
+}
+
+source_suffix = ['.rst', '.md']
+```
+
+This allows you to write both `.md` and `.rst` files inside of the same project.

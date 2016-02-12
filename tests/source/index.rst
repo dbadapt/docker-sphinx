@@ -1,6 +1,11 @@
 ndd-docker-sphinx-tests
 =======================
 
+.. toctree::
+   :maxdepth: 2
+
+   markdown
+
 
 
 rst2pdf.pdfbuilder

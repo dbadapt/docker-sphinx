@@ -22,6 +22,7 @@ RUN echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   
 
 RUN pip install 'Sphinx                        == 1.3.5' \
                 'alabaster                     == 0.7.7' \
+                'recommonmark                  == 0.4.0' \
                 'rst2pdf                       == 0.93 ' \
                 'sphinx-autobuild              == 0.5.2' \
                 'sphinx_bootstrap_theme        == 0.4.8' \
