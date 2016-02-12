@@ -12,17 +12,17 @@ The image contains:
 - A reStructuredText to PDF converter ([rst2pdf](https://github.com/rst2pdf/rst2pdf))
 - The following pluggins:
     - sphinx.ext.graphviz
-    - sphinxcontrib-actdiag
-    - sphinxcontrib-blockdiag
-    - sphinxcontrib-nwdiag
-    - sphinxcontrib-seqdiag
-    - sphinxcontrib-exceltable
-    - sphinxcontrib-googleanalytics
-    - sphinxcontrib-googlechart
-    - sphinxcontrib-googlemaps
-    - sphinxcontrib-libreoffice
-    - sphinxcontrib-plantuml
-
+    - [sphinx-prompt](https://pypi.python.org/pypi/sphinx-prompt)
+    - [sphinxcontrib-actdiag](https://pypi.python.org/pypi/sphinxcontrib-actdiag)
+    - [sphinxcontrib-blockdiag](https://pypi.python.org/pypi/sphinxcontrib-blockdiag)
+<!--- [sphinxcontrib-exceltable](https://pypi.python.org/pypi/sphinxcontrib-exceltable) -->
+    - [sphinxcontrib-googleanalytics](https://pypi.python.org/pypi/sphinxcontrib-googleanalytics)
+    - [sphinxcontrib-googlechart](https://pypi.python.org/pypi/sphinxcontrib-googlechart)
+    - [sphinxcontrib-googlemaps](https://pypi.python.org/pypi/sphinxcontrib-googlemaps)
+    - [sphinxcontrib-libreoffice](https://pypi.python.org/pypi/sphinxcontrib-libreoffice)
+    - [sphinxcontrib-nwdiag](https://pypi.python.org/pypi/sphinxcontrib-nwdiag)
+    - [sphinxcontrib-plantuml](https://pypi.python.org/pypi/sphinxcontrib-plantuml)
+    - [sphinxcontrib-seqdiag](https://pypi.python.org/pypi/sphinxcontrib-seqdiag)
 
 
 ## Installation
@@ -96,4 +96,32 @@ rm -rf build && touch source/conf.py
 ```
 docker run -i -v <HOST_DOC_DIR>:/doc ddidier/ndd-docker-sphinx make html
 docker run -i -v <HOST_DOC_DIR>:/doc ddidier/ndd-docker-sphinx make pdf
+```
+
+
+
+## Configuration
+
+Enable some extensions in your `conf.py`:
+
+```python
+extensions = [
+    'rst2pdf.pdfbuilder',
+    'sphinx.ext.graphviz',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.todo',
+    'sphinxcontrib.actdiag',
+    'sphinxcontrib.blockdiag',
+  # 'sphinxcontrib.exceltable', # incompatible with Sphinx 1.3.5
+  # 'sphinxcontrib.googleanalytics',
+    'sphinxcontrib.googlechart',
+    'sphinxcontrib.googlemaps',
+  # 'sphinxcontrib.libreoffice',
+    'sphinxcontrib.nwdiag',
+    'sphinxcontrib.packetdiag',
+    'sphinxcontrib.plantuml',
+    'sphinxcontrib.rackdiag',
+    'sphinxcontrib.seqdiag',
+]
 ```

@@ -20,24 +20,26 @@ RUN echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   
     rm -rf /var/cache/*                                                                                                          && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install 'Sphinx                         == 1.3.1' \
-                'alabaster                      == 0.7.6' \
-                'rst2pdf                        == 0.93 ' \
-                'sphinx-autobuild               == 0.5.2' \
-                'sphinx_bootstrap_theme         == 0.4.7' \
-                'sphinx-prompt                  == 1.0.0' \
-                'sphinx_rtd_theme               == 0.1.8' \
-                'sphinxcontrib-actdiag          == 0.8.4' \
-                'sphinxcontrib-blockdiag        == 1.5.4' \
-                'sphinxcontrib-exceltable       == 0.2.2' \
-              # 'sphinxcontrib-gnuplot          == 0.1'   \
-                'sphinxcontrib-googleanalytics  == 0.1'   \
-                'sphinxcontrib-googlechart      == 0.2.1' \
-                'sphinxcontrib-googlemaps       == 0.1.0' \
-                'sphinxcontrib-libreoffice      == 0.2'   \
-                'sphinxcontrib-nwdiag           == 0.9.4' \
-                'sphinxcontrib-plantuml         == 0.5'   \
-                'sphinxcontrib-seqdiag          == 0.8.4'
+RUN pip install 'Sphinx                        == 1.3.5' \
+                'alabaster                     == 0.7.7' \
+                'rst2pdf                       == 0.93 ' \
+                'sphinx-autobuild              == 0.5.2' \
+                'sphinx_bootstrap_theme        == 0.4.8' \
+                'sphinx-prompt                 == 1.0.0' \
+                'sphinx_rtd_theme              == 0.1.9' \
+                'sphinxcontrib-actdiag         == 0.8.5' \
+                'sphinxcontrib-blockdiag       == 1.5.5' \
+               # https://bitbucket.org/birkenfeld/sphinx-contrib/issues/139/sphinxcontrib-exceltable-error-with-sphinx \
+               #'sphinxcontrib-exceltable      == 0.2.2' \
+                'sphinxcontrib-googleanalytics == 0.1'   \
+                'sphinxcontrib-googlechart     == 0.2.1' \
+                'sphinxcontrib-googlemaps      == 0.1.0' \
+                'sphinxcontrib-libreoffice     == 0.2'   \
+                'sphinxcontrib-nwdiag          == 0.9.5' \
+                'sphinxcontrib-plantuml        == 0.6'   \
+                'sphinxcontrib-seqdiag         == 0.8.5' \
+               # https://github.com/GaretJax/sphinx-autobuild/pull/41 \
+                'livereload                    == 2.4.0'
 
 COPY files/usr/local/bin/* /usr/local/bin/
 COPY files/opt/plantuml/*  /opt/plantuml/
