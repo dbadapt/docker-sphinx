@@ -114,7 +114,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinxcontrib.actdiag',
     'sphinxcontrib.blockdiag',
-  # 'sphinxcontrib.exceltable', # incompatible with Sphinx 1.3.5
+    'sphinxcontrib.exceltable',
   # 'sphinxcontrib.googleanalytics',
     'sphinxcontrib.googlechart',
     'sphinxcontrib.googlemaps',
