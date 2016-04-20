@@ -96,13 +96,10 @@ sphinxcontrib.exceltable
 
 https://pythonhosted.org/sphinxcontrib-exceltable/
 
-https://bitbucket.org/birkenfeld/sphinx-contrib/issues/139/sphinxcontrib-exceltable-error-with-sphinx
-
-..
-   .. exceltable:: Table caption
-      :file: document.xls
-      :header: 1
-      :selection: A5:B7
+ .. exceltable:: Table caption
+    :file: document.xls
+    :header: 1
+    :selection: A5:B7
 
 
 

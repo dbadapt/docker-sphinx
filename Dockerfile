@@ -31,8 +31,7 @@ RUN pip install 'Sphinx                        == 1.3.6' \
                 'sphinx_rtd_theme              == 0.1.9' \
                 'sphinxcontrib-actdiag         == 0.8.5' \
                 'sphinxcontrib-blockdiag       == 1.5.5' \
-               # https://bitbucket.org/birkenfeld/sphinx-contrib/issues/139/sphinxcontrib-exceltable-error-with-sphinx \
-               #'sphinxcontrib-exceltable      == 0.2.2' \
+                'sphinxcontrib-exceltable      == 0.2.2' \
                 'sphinxcontrib-googleanalytics == 0.1'   \
                 'sphinxcontrib-googlechart     == 0.2.1' \
                 'sphinxcontrib-googlemaps      == 0.1.0' \

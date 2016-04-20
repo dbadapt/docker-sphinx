@@ -39,7 +39,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinxcontrib.actdiag',
     'sphinxcontrib.blockdiag',
-  # 'sphinxcontrib.exceltable',
+    'sphinxcontrib.exceltable',
   # 'sphinxcontrib.googleanalytics',
     'sphinxcontrib.googlechart',
     'sphinxcontrib.googlemaps',
