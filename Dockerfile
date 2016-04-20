@@ -20,12 +20,13 @@ RUN echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   
     rm -rf /var/cache/*                                                                                                          && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install 'Sphinx                        == 1.3.5' \
+RUN pip install --upgrade pip
+RUN pip install 'Sphinx                        == 1.3.6' \
                 'alabaster                     == 0.7.7' \
                 'recommonmark                  == 0.4.0' \
                 'rst2pdf                       == 0.93 ' \
-                'sphinx-autobuild              == 0.5.2' \
-                'sphinx_bootstrap_theme        == 0.4.8' \
+                'sphinx-autobuild              == 0.6.0' \
+                'sphinx_bootstrap_theme        == 0.4.9' \
                 'sphinx-prompt                 == 1.0.0' \
                 'sphinx_rtd_theme              == 0.1.9' \
                 'sphinxcontrib-actdiag         == 0.8.5' \
@@ -37,10 +38,9 @@ RUN pip install 'Sphinx                        == 1.3.5' \
                 'sphinxcontrib-googlemaps      == 0.1.0' \
                 'sphinxcontrib-libreoffice     == 0.2'   \
                 'sphinxcontrib-nwdiag          == 0.9.5' \
-                'sphinxcontrib-plantuml        == 0.6'   \
+                'sphinxcontrib-plantuml        == 0.7'   \
                 'sphinxcontrib-seqdiag         == 0.8.5' \
-               # https://github.com/GaretJax/sphinx-autobuild/pull/41 \
-                'livereload                    == 2.4.0'
+                'livereload                    == 2.4.1'
 
 COPY files/usr/local/bin/* /usr/local/bin/
 COPY files/opt/plantuml/*  /opt/plantuml/
