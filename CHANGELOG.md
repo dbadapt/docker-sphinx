@@ -1,10 +1,17 @@
 # NDD Docker Sphinx
 
+## Version 0.7.0
+
+- Rename Docker image to `ddidier/sphinx-doc`
+- Update Sphinx version to 1.3.6
+- Update plugins versions
+- Add `sphinxcontrib-exceltable` back
+
 ## Version 0.6.0
 
 - Add basic Markdow support
 - Update Sphinx and plugins versions
-- Removed `sphinxcontrib-exceltable` because of an incompatibility issue
+- Remove `sphinxcontrib-exceltable` because of an incompatibility issue
 
 ## Version 0.5.0
 
