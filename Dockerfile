@@ -59,4 +59,4 @@ WORKDIR $DOC_DIR
 
 USER sphinx-doc
 
-ENTRYPOINT ["/usr/local/bin/sphinx-startup"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
