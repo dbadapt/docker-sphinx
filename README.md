@@ -31,8 +31,8 @@ The image contains:
 ### From source
 
 ```
-git clone git@bitbucket.org:ndd-docker/sphinx-doc.git
-cd sphinx-doc
+git clone git@bitbucket.org:ndd-docker/ndd-docker-sphinx.git
+cd ndd-docker-sphinx
 docker build -t ddidier/sphinx-doc .
 ```
 
