@@ -48,7 +48,7 @@ docker pull ddidier/sphinx-doc
 
 The documentation directory on the host `<HOST_DOC_DIR>` must be mounted as a volume under `/doc` in the container.
 
-Use `-v <HOST_DOC_DIR>:/doc` to use a specific documentation directory or `-v $(spec):/doc` to use the current directory as the documentation directory.
+Use `-v <HOST_DOC_DIR>:/doc` to use a specific documentation directory or `-v $(pwd):/doc` to use the current directory as the documentation directory.
 
 Sphinx is executed by the user `sphinx-doc` belonging to the group of the `<HOST_DOC_DIR>` directory. All new files will thus belong to this group.
 
