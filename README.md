@@ -30,7 +30,7 @@ The image contains:
 
 ### From source
 
-```
+```shell
 git clone git@bitbucket.org:ndd-docker/ndd-docker-sphinx.git
 cd ndd-docker-sphinx
 docker build -t ddidier/sphinx-doc .
@@ -38,7 +38,7 @@ docker build -t ddidier/sphinx-doc .
 
 ### From Docker Hub
 
-```
+```shell
 docker pull ddidier/sphinx-doc
 ```
 
@@ -56,19 +56,19 @@ Sphinx is executed by the user `sphinx-doc` belonging to the group of the `<HOST
 
 Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory. You should however use the provided `sphinx-init` script which first calls `sphinx-quickstart` then configures the provided extensions.
 
-```
+```shell
 docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc sphinx-init
 ```
 
 All arguments accepted by [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) are passed to `sphinx-init`. For example:
 
-```
+```shell
 docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc sphinx-init --project my-documentation
 ```
 
 ### Interactive
 
-```
+```shell
 docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc
 ```
 
@@ -82,19 +82,19 @@ To create a PDF document, call `make pdf`.
 
 To watch for changes and create HTML documents dynamically, call `make livehtml` with a port binding:
 
-```
+```shell
 docker run -i -t -v <HOST_DOC_DIR>:/doc -p 8000:8000 ddidier/sphinx-doc make livehtml
 ```
 
 To trigger a full build while in watch mode, issue from the `<HOST_DOC_DIR>` folder:
 
-```
+```shell
 rm -rf build && touch source/conf.py
 ```
 
 ### Non interactive
 
-```
+```shell
 docker run -i -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc make html
 docker run -i -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc make pdf
 ```
