@@ -9,7 +9,7 @@ The image contains:
 - The Sphinx documentation builder ([sphinx-doc](http://sphinx-doc.org))
 - The Sphinx documentation watcher ([sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild))
 - The Sphinx documentation themes ([sphinx-themes](http://docs.writethedocs.org/tools/sphinx-themes))
-- A reStructuredText to PDF converter ([rst2pdf](https://github.com/rst2pdf/rst2pdf))
+- LaTeX to generate PDF documents and math images
 - A Markdown to reStructuredText converter ([recommonmark](https://github.com/rtfd/recommonmark))
 - The following pluggins:
     - sphinx.ext.graphviz

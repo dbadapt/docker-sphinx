@@ -15,7 +15,8 @@ RUN echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections                && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886                                                   && \
     apt-get update                                                                                                               && \
-    apt-get install -y --no-install-recommends graphviz oracle-java8-installer sudo                                              && \
+    apt-get install -y --no-install-recommends dvipng graphviz oracle-java8-installer sudo                                          \
+                                               texlive texlive-lang-french texlive-latex-extra                                   && \
     apt-get autoremove -y                                                                                                        && \
     rm -rf /var/cache/*                                                                                                          && \
     rm -rf /var/lib/apt/lists/*
@@ -23,7 +24,6 @@ RUN echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   
 RUN pip install 'Sphinx                        == 1.4.6'  \
                 'alabaster                     == 0.7.9'  \
                 'recommonmark                  == 0.4.0'  \
-                'rst2pdf                       == 0.93 '  \
                 'sphinx-autobuild              == 0.6.0'  \
                 'sphinx_bootstrap_theme        == 0.4.12' \
                 'sphinx-prompt                 == 1.0.0'  \
@@ -59,3 +59,4 @@ WORKDIR $DOC_DIR
 USER sphinx-doc
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
+

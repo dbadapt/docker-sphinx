@@ -1,5 +1,11 @@
 # NDD Docker Sphinx
 
+## Version 0.8.0
+
+- Update Sphinx version to 1.4.6 and plugins versions
+- Add LaTeX support
+- Reorganize tests to support both HTML and PDF
+
 ## Version 0.7.0
 
 - Rename Docker image to `ddidier/sphinx-doc`
