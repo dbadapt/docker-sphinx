@@ -54,6 +54,8 @@ sphinx.ext.mathjax
 
 https://www.mathjax.org/
 
+See https://github.com/sphinx-doc/sphinx/issues/2837
+
 
 
 sphinx.ext.todo
@@ -96,28 +98,19 @@ sphinxcontrib.exceltable
 
 https://pythonhosted.org/sphinxcontrib-exceltable/
 
- .. exceltable:: Table caption
-    :file: document.xls
-    :header: 1
-    :selection: A5:B7
+.. exceltable:: Table caption
+   :file: document.xls
+   :header: 1
+   :selection: A5:B7
 
 
 
-sphinxcontrib.gnuplot
----------------------
+.. sphinxcontrib.googleanalytics
+   -----------------------------
 
-https://github.com/thewtex/sphinx-contrib/tree/master/gnuplot
+   https://pypi.python.org/pypi/sphinxcontrib-googleanalytics
 
-Does not work ?!?!
-
-
-
-sphinxcontrib.googleanalytics
------------------------------
-
-https://pypi.python.org/pypi/sphinxcontrib-googleanalytics
-
-Does not work ?!?!
+   Does not work ?!?!
 
 
 
@@ -139,7 +132,7 @@ sphinxcontrib.googlemaps
 
 https://pypi.python.org/pypi/sphinxcontrib-googlemaps
 
-.. googlemaps:: Shibuya Station
+.. googlemaps:: Shinjuku Station
 
 
 
@@ -154,12 +147,6 @@ sphinxcontrib.nwdiag
 --------------------
 
 http://blockdiag.com/en/nwdiag/sphinxcontrib.html
-
-
-sphinxcontrib.packetdiag
-------------------------
-
-See sphinxcontrib.nwdiag
 
 .. nwdiag::
 
@@ -227,7 +214,21 @@ http://fr.plantuml.com/
 sphinxcontrib.rackdiag
 ----------------------
 
-See sphinxcontrib.nwdiag
+https://pypi.python.org/pypi/sphinxcontrib-nwdiag
+
+.. rackdiag::
+
+   diagram {
+     rackheight = 12;
+
+     1: UPS [height = 3];
+     4: DB Server (Master)
+     5: DB Server (Mirror)
+     7: Web Server (1)
+     8: Web Server (1)
+     9: Web Server (1)
+     10: LoadBalancer
+   }
 
 
 
