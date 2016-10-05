@@ -1,9 +1,9 @@
 #
-# ddidier/ndd-docker-sphinx
+# ddidier/sphinx-doc
 #
 # A Docker image for the Sphinx documentation builder (http://sphinx-doc.org).
 #
-# docker build -t ddidier/ndd-docker-sphinx .
+# docker build -t ddidier/sphinx-doc .
 
 FROM       python:2.7
 MAINTAINER David DIDIER
@@ -51,8 +51,6 @@ RUN useradd sphinx-doc && \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 ENV DOC_DIR /doc
-
-VOLUME $DOC_DIR
 
 WORKDIR $DOC_DIR
 
