@@ -8,18 +8,19 @@
 FROM       python:2.7
 MAINTAINER David DIDIER
 
-RUN echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   >> /etc/apt/sources.list                         && \
-    echo "deb-src http://httpredir.debian.org/debian jessie contrib non-free"   >> /etc/apt/sources.list                         && \
-    echo "deb     http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list && \
-    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections                && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886                                                   && \
-    apt-get update                                                                                                               && \
-    apt-get install -y --no-install-recommends dvipng graphviz oracle-java8-installer sudo                                          \
-                                               texlive texlive-lang-french texlive-latex-extra                                   && \
-    apt-get autoremove -y                                                                                                        && \
-    rm -rf /var/cache/*                                                                                                          && \
-    rm -rf /var/lib/apt/lists/*
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   >> /etc/apt/sources.list \
+ && echo "deb-src http://httpredir.debian.org/debian jessie contrib non-free"   >> /etc/apt/sources.list \
+ && echo "deb     http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list \
+ && echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list \
+ && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
+ && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends dvipng graphviz oracle-java8-installer sudo                                          \
+                                               texlive texlive-lang-french texlive-latex-extra \
+ && apt-get autoremove -y \
+ && rm -rf /var/cache/* \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN pip install 'Sphinx                        == 1.4.6'  \
                 'alabaster                     == 0.7.9'  \
@@ -40,21 +41,21 @@ RUN pip install 'Sphinx                        == 1.4.6'  \
                 'sphinxcontrib-seqdiag         == 0.8.5'  \
                 'livereload                    == 2.4.1'
 
-COPY files/usr/local/bin/* /usr/local/bin/
-COPY files/opt/plantuml/*  /opt/plantuml/
 COPY files/etc/sudoers.d/* /etc/sudoers.d/
+COPY files/opt/plantuml/*  /opt/plantuml/
+COPY files/usr/local/bin/* /usr/local/bin/
 
-RUN useradd sphinx-doc && \
-    chown root:root /etc/sudoers.d/* && \
-    chmod 440 /etc/sudoers.d/*
+RUN useradd sphinx-doc \
+ && chown root:root /etc/sudoers.d/* \
+ && chown root:root /usr/local/bin/* \
+ && chmod 440 /etc/sudoers.d/* \
+ && chmod 755 /usr/local/bin/*
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV DATA_DIR=/doc \
+    JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
-ENV DOC_DIR /doc
-
-WORKDIR $DOC_DIR
+WORKDIR $DATA_DIR
 
 USER sphinx-doc
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
-

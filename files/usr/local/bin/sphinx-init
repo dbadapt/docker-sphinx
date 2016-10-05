@@ -6,7 +6,7 @@ sphinx-quickstart --makefile --no-batchfile "$@"
 
 # ----- Add 'livehtml' and 'pdf' builders to Makefile --------------------------
 
-makefile="$DOC_DIR/Makefile"
+makefile="$DATA_DIR/Makefile"
 
 touch "$makefile"
 
@@ -21,10 +21,10 @@ echo -e "\t@echo \"Build finished. The PDF files are in \$(BUILDDIR)/pdf.\""    
 
 # ----- Add PDF extension to configuration -------------------------------------
 
-configuration="$DOC_DIR/conf.py"
+configuration="$DATA_DIR/conf.py"
 
 if [ ! -f "$configuration" ]; then
-    configuration="$DOC_DIR/source/conf.py"
+    configuration="$DATA_DIR/source/conf.py"
 fi
 
 sed -i -e "s/^extensions = \[\]/extensions = [\'rst2pdf.pdfbuilder\']/g" "$configuration"

@@ -46,30 +46,30 @@ docker pull ddidier/sphinx-doc
 
 ## Usage
 
-The documentation directory on the host `<HOST_DOC_DIR>` must be mounted as a volume under `/doc` in the container.
+The documentation directory on the host `<HOST_DATA_DIR>` must be mounted as a volume under `/doc` in the container.
 
-Use `-v <HOST_DOC_DIR>:/doc` to use a specific documentation directory or `-v $(pwd):/doc` to use the current directory as the documentation directory.
+Use `-v <HOST_DATA_DIR>:/doc` to use a specific documentation directory or `-v $(pwd):/doc` to use the current directory as the documentation directory.
 
-Sphinx is executed by the user `sphinx-doc` belonging to the group of the `<HOST_DOC_DIR>` directory. All new files will thus belong to this group.
+Sphinx is executed by the user `sphinx-doc` belonging to the group of the `<HOST_DATA_DIR>` directory. All new files will thus belong to this group.
 
 ### Initialisation
 
 Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory. You should however use the provided `sphinx-init` script which first calls `sphinx-quickstart` then configures the provided extensions.
 
 ```shell
-docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc sphinx-init
+docker run -i -t -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc sphinx-init
 ```
 
 All arguments accepted by [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) are passed to `sphinx-init`. For example:
 
 ```shell
-docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc sphinx-init --project my-documentation
+docker run -i -t -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc sphinx-init --project my-documentation
 ```
 
 ### Interactive
 
 ```shell
-docker run -i -t -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc
+docker run -i -t -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc
 ```
 
 You should now be in the `/doc` directory, otherwise just `cd` to `/doc`.
@@ -83,10 +83,10 @@ To create a PDF document, call `make pdf`.
 To watch for changes and create HTML documents dynamically, call `make livehtml` with a port binding:
 
 ```shell
-docker run -i -t -v <HOST_DOC_DIR>:/doc -p 8000:8000 ddidier/sphinx-doc make livehtml
+docker run -i -t -v <HOST_DATA_DIR>:/doc -p 8000:8000 ddidier/sphinx-doc make livehtml
 ```
 
-To trigger a full build while in watch mode, issue from the `<HOST_DOC_DIR>` folder:
+To trigger a full build while in watch mode, issue from the `<HOST_DATA_DIR>` folder:
 
 ```shell
 rm -rf build && touch source/conf.py
@@ -95,8 +95,8 @@ rm -rf build && touch source/conf.py
 ### Non interactive
 
 ```shell
-docker run -i -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc make html
-docker run -i -v <HOST_DOC_DIR>:/doc ddidier/sphinx-doc make pdf
+docker run -i -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc make html
+docker run -i -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc make pdf
 ```
 
 

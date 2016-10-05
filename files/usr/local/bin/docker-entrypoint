@@ -1,6 +1,8 @@
 #!/bin/bash
 
-TARGET_GID=$(stat -c "%g" $DOC_DIR)
+set -e
+
+TARGET_GID=$(stat -c "%g" $DATA_DIR)
 TARGET_GID_EXISTS=$(cat /etc/group | grep $TARGET_GID | wc -l)
 TARGET_GNAME=sphinx-doc
 TARGET_UNAME=sphinx-doc
