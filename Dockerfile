@@ -5,7 +5,7 @@
 #
 # docker build -t ddidier/sphinx-doc .
 
-FROM       python:2.7
+FROM       python:2.7.13
 MAINTAINER David DIDIER
 
 RUN export DEBIAN_FRONTEND=noninteractive \
@@ -22,13 +22,14 @@ RUN export DEBIAN_FRONTEND=noninteractive \
  && rm -rf /var/cache/* \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install 'Sphinx                        == 1.4.6'  \
-                'alabaster                     == 0.7.9'  \
+RUN pip install --upgrade pip \
+ && pip install 'Sphinx                        == 1.5.5'  \
+                'alabaster                     == 0.7.10' \
                 'recommonmark                  == 0.4.0'  \
                 'sphinx-autobuild              == 0.6.0'  \
-                'sphinx_bootstrap_theme        == 0.4.12' \
+                'sphinx_bootstrap_theme        == 0.4.14' \
                 'sphinx-prompt                 == 1.0.0'  \
-                'sphinx_rtd_theme              == 0.1.9'  \
+                'sphinx_rtd_theme              == 0.2.4'  \
                 'sphinxcontrib-actdiag         == 0.8.5'  \
                 'sphinxcontrib-blockdiag       == 1.5.5'  \
                 'sphinxcontrib-exceltable      == 0.2.2'  \
@@ -39,7 +40,7 @@ RUN pip install 'Sphinx                        == 1.4.6'  \
                 'sphinxcontrib-nwdiag          == 0.9.5'  \
                 'sphinxcontrib-plantuml        == 0.8.1'  \
                 'sphinxcontrib-seqdiag         == 0.8.5'  \
-                'livereload                    == 2.4.1'
+                'livereload                    == 2.5.1'
 
 COPY files/etc/sudoers.d/* /etc/sudoers.d/
 COPY files/opt/plantuml/*  /opt/plantuml/

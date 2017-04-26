@@ -4,26 +4,26 @@ A Docker image for the [Sphinx documentation](http://sphinx-doc.org) builder.
 
 The image is based upon the official [python:2.7](https://hub.docker.com/_/python/).
 
-The image contains:
+Besides the Sphinx documentation builder ([sphinx-doc](http://sphinx-doc.org)), this image contains:
 
-- The Sphinx documentation builder ([sphinx-doc](http://sphinx-doc.org))
-- The Sphinx documentation watcher ([sphinx-autobuild](https://github.com/GaretJax/sphinx-autobuild))
-- The Sphinx documentation themes ([sphinx-themes](http://docs.writethedocs.org/tools/sphinx-themes))
 - LaTeX to generate PDF documents and math images
-- A Markdown to reStructuredText converter ([recommonmark](https://github.com/rtfd/recommonmark))
-- The following pluggins:
-    - sphinx.ext.graphviz
-    - [sphinx-prompt](https://pypi.python.org/pypi/sphinx-prompt)
-    - [sphinxcontrib-actdiag](https://pypi.python.org/pypi/sphinxcontrib-actdiag)
-    - [sphinxcontrib-blockdiag](https://pypi.python.org/pypi/sphinxcontrib-blockdiag)
-    - [sphinxcontrib-exceltable](https://pypi.python.org/pypi/sphinxcontrib-exceltable)
-    - [sphinxcontrib-googleanalytics](https://pypi.python.org/pypi/sphinxcontrib-googleanalytics)
-    - [sphinxcontrib-googlechart](https://pypi.python.org/pypi/sphinxcontrib-googlechart)
-    - [sphinxcontrib-googlemaps](https://pypi.python.org/pypi/sphinxcontrib-googlemaps)
-    - [sphinxcontrib-libreoffice](https://pypi.python.org/pypi/sphinxcontrib-libreoffice)
-    - [sphinxcontrib-nwdiag](https://pypi.python.org/pypi/sphinxcontrib-nwdiag)
-    - [sphinxcontrib-plantuml](https://pypi.python.org/pypi/sphinxcontrib-plantuml)
-    - [sphinxcontrib-seqdiag](https://pypi.python.org/pypi/sphinxcontrib-seqdiag)
+- [alabaster](https://pypi.python.org/pypi/alabaster)
+- [livereload](https://pypi.python.org/pypi/livereload)
+- [recommonmark](https://pypi.python.org/pypi/recommonmark)
+- [sphinx-bootstrap-theme](https://pypi.python.org/pypi/sphinx-bootstrap-theme)
+- [sphinx-prompt](https://pypi.python.org/pypi/sphinx-prompt)
+- [sphinx-rtd-theme](https://pypi.python.org/pypi/sphinx_rtd_theme)
+- [sphinxcontrib-actdiag](https://pypi.python.org/pypi/sphinxcontrib-actdiag)
+- [sphinxcontrib-blockdiag](https://pypi.python.org/pypi/sphinxcontrib-blockdiag)
+- [sphinxcontrib-exceltable](https://pypi.python.org/pypi/sphinxcontrib-exceltable)
+- [sphinxcontrib-googleanalytics](https://pypi.python.org/pypi/sphinxcontrib-googleanalytics)
+- [sphinxcontrib-googlechart](https://pypi.python.org/pypi/sphinxcontrib-googlechart)
+- [sphinxcontrib-googlemaps](https://pypi.python.org/pypi/sphinxcontrib-googlemaps)
+- [sphinxcontrib-libreoffice](https://pypi.python.org/pypi/sphinxcontrib-libreoffice)
+- [sphinxcontrib-nwdiag](https://pypi.python.org/pypi/sphinxcontrib-nwdiag)
+- [sphinxcontrib-plantuml](https://pypi.python.org/pypi/sphinxcontrib-plantuml)
+- [sphinxcontrib-seqdiag](https://pypi.python.org/pypi/sphinxcontrib-seqdiag)
+
 
 
 ## Installation

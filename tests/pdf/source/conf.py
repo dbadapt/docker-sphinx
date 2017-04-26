@@ -39,7 +39,10 @@ extensions = [
     'sphinx.ext.todo',
     'sphinxcontrib.actdiag',
     'sphinxcontrib.blockdiag',
-    'sphinxcontrib.exceltable',
+
+  # https://bitbucket.org/birkenfeld/sphinx-contrib/issues/178/excel-table-not-working-with-sphinx-151
+  # 'sphinxcontrib.exceltable',
+
   # 'sphinxcontrib.googleanalytics',
     'sphinxcontrib.googlechart',
     'sphinxcontrib.googlemaps',

@@ -93,10 +93,7 @@ sphinxcontrib.exceltable
 
 https://pythonhosted.org/sphinxcontrib-exceltable/
 
-.. exceltable:: Table caption
-   :file: document.xls
-   :header: 1
-   :selection: A5:B7
+See https://bitbucket.org/birkenfeld/sphinx-contrib/issues/178/excel-table-not-working-with-sphinx-151
 
 
 
