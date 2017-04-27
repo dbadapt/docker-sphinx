@@ -1,5 +1,18 @@
 # NDD Docker Sphinx
 
+## Version 0.9.0
+
+- Fix documentation with the new entrypoint
+- Fix expected test results
+- Fix entrypoint
+- Update Sphinx version to 1.5.5 and plugins versions
+
+## Version 0.8.1
+
+- Rename DOC_DIR to DATA_DIR
+- Update PlantUML version
+- Fix image name in Dockerfile
+
 ## Version 0.8.0
 
 - Update Sphinx version to 1.4.6 and plugins versions
