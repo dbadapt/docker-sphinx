@@ -2,23 +2,25 @@
 
 set -e
 
-TARGET_GID=$(stat -c "%g" $DATA_DIR)
-TARGET_GID_EXISTS=$(cat /etc/group | grep $TARGET_GID | wc -l)
-TARGET_GNAME=sphinx-doc
-TARGET_UNAME=sphinx-doc
+# Adapted from:
+# https://denibertovic.com/posts/handling-permissions-with-docker-volumes/
 
-if [ $TARGET_GID_EXISTS == "0" ]; then
-    # Create new group using target GID and add sphinx-doc user
-    sudo groupadd -g $TARGET_GID $TARGET_GNAME
-    sudo usermod -a -G $TARGET_GNAME $TARGET_UNAME
-else
-    # GID exists, find group name and add
-    TARGET_GNAME=$(getent group $TARGET_GID | cut -d: -f1)
-    sudo usermod -a -G $TARGET_GNAME $TARGET_UNAME
+TXT_RESET='\e[0m'
+BOLD_RED='\e[1;31m'
+
+if [ -z ${USER_ID+x} ]; then
+    echo -e "$BOLD_RED"
+    echo -e " **********************************************************************"
+    echo -e " * WARNING: environment variable USER_ID is not set (default is 9001) *"
+    echo -e " * USAGE: docker run ... -e USER_ID=\`id -u \$USER\` ...                 *"
+    echo -e " **********************************************************************"
+    echo -e "$TXT_RESET"
 fi
 
-if [[ -n "$@" ]]; then
-    "$@"
-else
-    bash
-fi
+USER_ID=${USER_ID:-9001}
+USER_NAME=sphinx-doc
+
+useradd --shell /bin/bash -u $USER_ID -o -c "" -m $USER_NAME
+export HOME=/home/$USER_NAME
+
+exec /usr/local/bin/gosu $USER_NAME "$@"
