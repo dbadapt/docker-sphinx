@@ -46,30 +46,28 @@ docker pull ddidier/sphinx-doc
 
 ## Usage
 
-The documentation directory on the host `<HOST_DATA_DIR>` must be mounted as a volume under `/doc` in the container.
+The documentation directory on the host `<HOST_DATA_DIR>` must be mounted as a volume under `/doc` in the container. Use `-v <HOST_DATA_DIR>:/doc` to use a specific documentation directory or `-v $(pwd):/doc` to use the current directory as the documentation directory.
 
-Use `-v <HOST_DATA_DIR>:/doc` to use a specific documentation directory or `-v $(pwd):/doc` to use the current directory as the documentation directory.
-
-Sphinx is executed by the user `sphinx-doc` belonging to the group of the `<HOST_DATA_DIR>` directory. All new files will thus belong to this group.
+Sphinx will be executed by the `sphinx-doc` user which is created by the Docker entry point. You **must** pass to the container the environment variable `USER_ID` set to the UID of the user the files will belong to. For example ``-e USER_ID=`id -u $USER` ``.
 
 ### Initialisation
 
 Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory. You should however use the provided `sphinx-init` script which first calls `sphinx-quickstart` then configures the provided extensions.
 
 ```shell
-docker run -i -t -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc sphinx-init
+docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc sphinx-init
 ```
 
 All arguments accepted by [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) are passed to `sphinx-init`. For example:
 
 ```shell
-docker run -i -t -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc sphinx-init --project my-documentation
+docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc sphinx-init --project my-documentation
 ```
 
 ### Interactive
 
 ```shell
-docker run -i -t -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc
+docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc
 ```
 
 You should now be in the `/doc` directory, otherwise just `cd` to `/doc`.
@@ -83,7 +81,7 @@ To create a PDF document, call `make pdf`.
 To watch for changes and create HTML documents dynamically, call `make livehtml` with a port binding:
 
 ```shell
-docker run -i -t -v <HOST_DATA_DIR>:/doc -p 8000:8000 ddidier/sphinx-doc make livehtml
+docker run -it -v <HOST_DATA_DIR>:/doc -p 8000:8000 -e USER_ID=`id -u $USER` ddidier/sphinx-doc make livehtml
 ```
 
 To trigger a full build while in watch mode, issue from the `<HOST_DATA_DIR>` folder:
@@ -95,8 +93,8 @@ rm -rf build && touch source/conf.py
 ### Non interactive
 
 ```shell
-docker run -i -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc make html
-docker run -i -v <HOST_DATA_DIR>:/doc ddidier/sphinx-doc make pdf
+docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc make html
+docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc make pdf
 ```
 
 
