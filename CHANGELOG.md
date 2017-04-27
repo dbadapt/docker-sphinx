@@ -1,5 +1,7 @@
 # NDD Docker Sphinx
 
+- Update documentation: how to install a new extension
+
 ## Version 0.9.0
 
 - Fix documentation with the new entrypoint

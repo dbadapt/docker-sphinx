@@ -101,7 +101,9 @@ docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-do
 
 ## Configuration
 
-Enable some extensions in your `conf.py`:
+### Enable an extension
+
+To enable an already installed extension, uncomment the line in your `conf.py`:
 
 ```python
 extensions = [
@@ -124,6 +126,30 @@ extensions = [
     'sphinxcontrib.seqdiag',
 ]
 ```
+
+### Install an extension
+
+To install a new extension, first extend the `Dockerfile`:
+
+```docker
+FROM ddidier/sphinx-doc:latest
+
+RUN pip install 'a-sphinx-extension       == A.B.C' \
+                'another-sphinx-extension == X.Y.Z'
+```
+
+Then add a line in your `conf.py`:
+
+```python
+extensions = [
+    'rst2pdf.pdfbuilder',
+    ...
+    'a.sphinx.extension',
+    'another.sphinx.extension',
+]
+```
+
+### Enable Markdown
 
 To use Markdown inside of Sphinx, add this to your `conf.py`:
 
