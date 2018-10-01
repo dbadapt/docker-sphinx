@@ -5,13 +5,19 @@
 #
 # docker build -t ddidier/sphinx-doc .
 
-FROM       python:3.6.6-stretch
+FROM       python:3.6.6-slim-stretch
 MAINTAINER David DIDIER
 
-RUN export DEBIAN_FRONTEND=noninteractive \
+# OpenJDK installation issue
+# - https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
+# - mkdir -p /usr/share/man/man1
+
+RUN mkdir -p /usr/share/man/man1 \
+ && export DEBIAN_FRONTEND=noninteractive \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
         gosu sudo \
+        curl make \
         dvipng graphviz \
         openjdk-8-jre-headless \
     \

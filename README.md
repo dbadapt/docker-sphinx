@@ -105,8 +105,6 @@ To create a new Sphinx project, call `sphinx-init`.
 
 To create HTML documents, call `make html`.
 
-To create a PDF document, call `make pdf`.
-
 To watch for changes and create HTML documents dynamically, call `make livehtml` with a port binding:
 
 ```shell
