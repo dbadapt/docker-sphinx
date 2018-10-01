@@ -1,25 +1,20 @@
 # NDD Docker Sphinx
 
-<!-- MarkdownTOC -->
-
-1. [Introduction](#introduction)
-1. [Installation](#installation)
-    1. [From source](#from-source)
-    1. [From Docker Hub](#from-docker-hub)
-1. [Usage](#usage)
-    1. [Initialisation](#initialisation)
-    1. [Interactive](#interactive)
-    1. [Non interactive](#non-interactive)
-1. [Configuration](#configuration)
-    1. [Extensions](#extensions)
-    1. [Install an extension](#install-an-extension)
-1. [Limitations](#limitations)
-
-<!-- /MarkdownTOC -->
+1. [Introduction](#markdown-header-introduction)
+1. [Installation](#markdown-header-installation)
+    1. [From source](#markdown-header-from-source)
+    1. [From Docker Hub](#markdown-header-from-docker-hub)
+1. [Usage](#markdown-header-usage)
+    1. [Initialisation](#markdown-header-initialisation)
+    1. [Interactive](#markdown-header-interactive)
+    1. [Non interactive](#markdown-header-non-interactive)
+1. [Configuration](#markdown-header-configuration)
+    1. [Extensions](#markdown-header-extensions)
+    1. [Install an extension](#markdown-header-install-an-extension)
+1. [Limitations](#markdown-header-limitations)
 
 
 
-<a id="introduction"></a>
 ## Introduction
 
 A Docker image for the [Sphinx documentation](http://sphinx-doc.org) builder.
@@ -50,10 +45,8 @@ The versioning scheme of the Docker image is `<SPHINX_VERSION>-<DOCKER_IMAGE_VER
 
 
 
-<a id="installation"></a>
 ## Installation
 
-<a id="from-source"></a>
 ### From source
 
 ```shell
@@ -62,7 +55,6 @@ cd ndd-docker-sphinx
 docker build -t ddidier/sphinx-doc .
 ```
 
-<a id="from-docker-hub"></a>
 ### From Docker Hub
 
 ```shell
@@ -71,14 +63,12 @@ docker pull ddidier/sphinx-doc
 
 
 
-<a id="usage"></a>
 ## Usage
 
 The documentation directory on the host `<HOST_DATA_DIR>` must be mounted as a volume under `/doc` in the container. Use `-v <HOST_DATA_DIR>:/doc` to use a specific documentation directory or `-v $(pwd):/doc` to use the current directory as the documentation directory.
 
 Sphinx will be executed inside the container by the `sphinx-doc` user which is created by the Docker entry point. You **must** pass to the container the environment variable `USER_ID` set to the UID of the user the files will belong to. For example ``-e USER_ID=`id -u $USER` ``.
 
-<a id="initialisation"></a>
 ### Initialisation
 
 Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory. You should however use the provided `sphinx-init` script which first calls `sphinx-quickstart` then customizes the `Makefile` and the configuration file `conf.py`.
@@ -93,7 +83,6 @@ All arguments accepted by [`sphinx-quickstart`](http://sphinx-doc.org/invocation
 docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc sphinx-init --project my-documentation
 ```
 
-<a id="interactive"></a>
 ### Interactive
 
 ```shell
@@ -120,7 +109,6 @@ To trigger a full build while in watch mode, issue from the `<HOST_DATA_DIR>` fo
 rm -rf build && touch source/conf.py
 ```
 
-<a id="non-interactive"></a>
 ### Non interactive
 
 ```shell
@@ -130,17 +118,14 @@ docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-do
 
 
 
-<a id="configuration"></a>
 ## Configuration
 
 **Warning: some variables, like the `extensions` variable, are overriden at the end of the `conf.py` file.**
 
-<a id="extensions"></a>
 ### Extensions
 
 To enable or disable a packaged extension, comment or uncomment the line in your `conf.py`.
 
-<a id="install-an-extension"></a>
 ### Install an extension
 
 To install a new extension, first extend the `Dockerfile`:
@@ -164,7 +149,6 @@ extensions = [
 
 
 
-<a id="limitations"></a>
 ## Limitations
 
 - PDF generation does not work when including Markdown file using `recommonmark`.
