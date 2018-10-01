@@ -28,6 +28,8 @@ function test_html() {
     echo -e "Deleting directory '$TESTS_DIR/build'"
     rm -rf "$TESTS_DIR/build"
 
+    cp -f $TESTS_DIR/source/index.rst.template $TESTS_DIR/source/index.rst
+
     echo -e "Generating documentation in '$TESTS_DIR/build'"
     echo -e "${BOLD_YELLOW}Output redirected to '$TESTS_DIR/logs/html.log' ${TXT_RESET}"
     docker run -it --rm -v $TESTS_DIR:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc make html > $TESTS_DIR/logs/html.log
@@ -128,7 +130,32 @@ function test_html() {
 }
 
 function test_pdf() {
-    echo "TODO"
+    echo -e "Deleting directory '$TESTS_DIR/build'"
+    rm -rf "$TESTS_DIR/build"
+
+    cp -f $TESTS_DIR/source/index.rst.template $TESTS_DIR/source/index.rst
+    sed -i '/Markdown document/d' $TESTS_DIR/source/index.rst
+
+    echo -e "Generating documentation in '$TESTS_DIR/build'"
+    echo -e "${BOLD_YELLOW}Output redirected to '$TESTS_DIR/logs/pdf.log' ${TXT_RESET}"
+    docker run -it --rm -v $TESTS_DIR:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc make latexpdf > $TESTS_DIR/logs/pdf.log
+
+    if [ -f "$TESTS_DIR/build/latex/NDDDockerSphinxTest.pdf" ]; then
+        echo -e $BOLD_PURPLE
+        echo -e " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo -e " ┃ PDF Test: No way to test the generated document                            "
+        echo -e " ┃ The PDF was generated in '$TESTS_DIR/build/latex/NDDDockerSphinxTest.pdf'  "
+        echo -e " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo -e $TXT_RESET
+    else
+        echo -e $BOLD_RED
+        echo -e " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo -e " ┃ PDF Test: Failed                                                           "
+        echo -e " ┃ The PDF was NOT generated in $TESTS_DIR/build/latex                        "
+        echo -e " ┃ Logs were generated in '$TESTS_DIR/logs/html.log'                          "
+        echo -e " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo -e $TXT_RESET
+    fi
 }
 
 function test_all() {

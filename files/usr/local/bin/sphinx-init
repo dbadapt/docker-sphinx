@@ -44,6 +44,11 @@ echo -e ""                                                                      
 echo -e "livehtml:"                                                                                             >> "$makefile"
 echo -e "\tsphinx-autobuild -b html --host 0.0.0.0 \$(ALLSPHINXOPTS) \"\$(SOURCEDIR)\" \"\$(BUILDDIR)/html\""   >> "$makefile"
 
+# sphinx_init_log "  - Adding 'rinoh' target to Makefile"
+# echo -e ""                                                                      >> "$makefile"
+# echo -e "rinoh:"                                                                >> "$makefile"
+# echo -e "\t@\$(SPHINXBUILD) -b rinoh \"\$(SOURCEDIR)\" \"\$(BUILDDIR)/rinoh\""  >> "$makefile"
+
 # ------------------------------------------------ Customize configuration -----
 
 sphinx_init_log "Customizing configuration"

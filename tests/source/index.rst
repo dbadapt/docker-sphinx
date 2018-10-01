@@ -4,7 +4,6 @@ NDD Docker Sphinx Tests
 .. toctree::
    :maxdepth: 2
 
-   Markdown document <some-markdown-document.md>
 
 
 

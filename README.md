@@ -13,6 +13,7 @@
 1. [Configuration](#configuration)
     1. [Extensions](#extensions)
     1. [Install an extension](#install-an-extension)
+1. [Limitations](#limitations)
 
 <!-- /MarkdownTOC -->
 
@@ -105,6 +106,8 @@ To create a new Sphinx project, call `sphinx-init`.
 
 To create HTML documents, call `make html`.
 
+To create a PDF document, call `make latexpdf`.
+
 To watch for changes and create HTML documents dynamically, call `make livehtml` with a port binding:
 
 ```shell
@@ -122,6 +125,7 @@ rm -rf build && touch source/conf.py
 
 ```shell
 docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc make html
+docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc make latexpdf
 ```
 
 
@@ -157,3 +161,11 @@ extensions = [
     'another.sphinx.extension',
 ]
 ```
+
+
+
+<a id="limitations"></a>
+## Limitations
+
+- PDF generation does not work when including Markdown file using `recommonmark`.
+- PDF generation does not take into account Excel tables.

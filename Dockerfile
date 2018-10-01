@@ -20,6 +20,7 @@ RUN mkdir -p /usr/share/man/man1 \
         curl make \
         dvipng graphviz \
         openjdk-8-jre-headless \
+        texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk \
     \
  && PLANTUML_VERSION=1.2018.11 \
  && mkdir /opt/plantuml \
@@ -31,6 +32,7 @@ RUN mkdir -p /usr/share/man/man1 \
                 'guzzle_sphinx_theme           == 0.7.11'   \
                 'livereload                    == 2.5.2'    \
                 'recommonmark                  == 0.4.0'    \
+                'rinohtype                     == 0.2.1'    \
                 'sphinx-autobuild              == 0.7.1'    \
                 'sphinx_bootstrap_theme        == 0.6.5'    \
                 'sphinx-prompt                 == 1.0.0'    \
