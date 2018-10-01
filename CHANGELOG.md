@@ -1,6 +1,20 @@
 # NDD Docker Sphinx
 
+## Version 1.8.1-1
+
+- New versioning scheme `<SPHINX_VERSION>-<DOCKER_IMAGE_VERSION>`
+- Update Sphinx version to 1.8.1 and plugins versions
+- Update Python version to 3.6.6
+- Update PlantUML version
 - Update documentation: how to install a new extension
+- Add pluggins:
+  - `sphinxcontrib-excel-table`
+  - `sphinxcontrib-fulltoc`
+  - `guzzle_sphinx_theme`
+- Remove pluggins:
+  - `sphinxcontrib-exceltable`
+  - `sphinxcontrib-libreoffice`
+- Refactor "testing framework"
 
 ## Version 0.9.0
 

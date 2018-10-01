@@ -5,15 +5,14 @@ set -e
 # Adapted from:
 # https://denibertovic.com/posts/handling-permissions-with-docker-volumes/
 
-TXT_RESET='\e[0m'
-BOLD_RED='\e[1;31m'
+source /usr/share/ddidier/bash_colours
 
 if [ -z ${USER_ID+x} ]; then
     echo -e "$BOLD_RED"
-    echo -e " **********************************************************************"
-    echo -e " * WARNING: environment variable USER_ID is not set (default is 9001) *"
-    echo -e " * USAGE: docker run ... -e USER_ID=\`id -u \$USER\` ...                 *"
-    echo -e " **********************************************************************"
+    echo -e " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo -e " ┃ WARNING: environment variable USER_ID is not set (default is 9001)        ┃"
+    echo -e " ┃ USAGE: docker run ... -e USER_ID=\`id -u \$USER\` ...                        ┃"
+    echo -e " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo -e "$TXT_RESET"
 fi
 
@@ -23,4 +22,4 @@ USER_NAME=sphinx-doc
 useradd --shell /bin/bash -u $USER_ID -o -c "" -m $USER_NAME
 export HOME=/home/$USER_NAME
 
-exec /usr/local/bin/gosu $USER_NAME "$@"
+exec gosu $USER_NAME "$@"

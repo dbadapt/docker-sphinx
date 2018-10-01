@@ -5,57 +5,52 @@
 #
 # docker build -t ddidier/sphinx-doc .
 
-FROM       python:2.7.13
+FROM       python:3.6.6-stretch
 MAINTAINER David DIDIER
 
 RUN export DEBIAN_FRONTEND=noninteractive \
- && echo "deb     http://httpredir.debian.org/debian jessie contrib non-free"   >> /etc/apt/sources.list \
- && echo "deb-src http://httpredir.debian.org/debian jessie contrib non-free"   >> /etc/apt/sources.list \
- && echo "deb     http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list \
- && echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" >> /etc/apt/sources.list.d/webupd8team-java.list \
- && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections \
- && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 7B2C3B0889BF5709A105D03AC2518248EEA14886 \
  && apt-get update \
- && apt-get install -y --no-install-recommends dvipng graphviz oracle-java8-installer sudo \
-                                               texlive texlive-lang-french texlive-latex-extra \
- && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
- && curl -o /usr/local/bin/gosu     -SL "https://github.com/tianon/gosu/releases/download/1.10/gosu-$(dpkg --print-architecture)" \
- && curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.10/gosu-$(dpkg --print-architecture).asc" \
- && gpg --verify /usr/local/bin/gosu.asc \
- && rm /usr/local/bin/gosu.asc \
- && chmod +x /usr/local/bin/gosu \
+ && apt-get install -y --no-install-recommends \
+        gosu sudo \
+        dvipng graphviz \
+        openjdk-8-jre-headless \
+    \
+ && PLANTUML_VERSION=1.2018.11 \
+ && mkdir /opt/plantuml \
+ && curl https://netix.dl.sourceforge.net/project/plantuml/${PLANTUML_VERSION}/plantuml.${PLANTUML_VERSION}.jar --output /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar \
+ && ln -s /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar /opt/plantuml/plantuml.jar \
+    \
+ && pip install 'Sphinx                        == 1.8.1'    \
+                'alabaster                     == 0.7.11'   \
+                'guzzle_sphinx_theme           == 0.7.11'   \
+                'livereload                    == 2.5.2'    \
+                'recommonmark                  == 0.4.0'    \
+                'sphinx-autobuild              == 0.7.1'    \
+                'sphinx_bootstrap_theme        == 0.6.5'    \
+                'sphinx-prompt                 == 1.0.0'    \
+                'sphinx_rtd_theme              == 0.4.1'    \
+                'sphinxcontrib-actdiag         == 0.8.5'    \
+                'sphinxcontrib-blockdiag       == 1.5.5'    \
+                'sphinxcontrib-excel-table     == 1.0.4'    \
+                'sphinxcontrib-fulltoc         == 1.2.0'    \
+                'sphinxcontrib-googleanalytics == 0.1'      \
+                'sphinxcontrib-googlechart     == 0.2.1'    \
+                'sphinxcontrib-googlemaps      == 0.1.0'    \
+                'sphinxcontrib-nwdiag          == 0.9.5'    \
+                'sphinxcontrib-plantuml        == 0.12'     \
+                'sphinxcontrib-seqdiag         == 0.8.5'    \
+    \
  && apt-get autoremove -y \
  && rm -rf /var/cache/* \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip \
- && pip install 'Sphinx                        == 1.5.5'  \
-                'alabaster                     == 0.7.10' \
-                'recommonmark                  == 0.4.0'  \
-                'sphinx-autobuild              == 0.6.0'  \
-                'sphinx_bootstrap_theme        == 0.4.14' \
-                'sphinx-prompt                 == 1.0.0'  \
-                'sphinx_rtd_theme              == 0.2.4'  \
-                'sphinxcontrib-actdiag         == 0.8.5'  \
-                'sphinxcontrib-blockdiag       == 1.5.5'  \
-                'sphinxcontrib-exceltable      == 0.2.2'  \
-                'sphinxcontrib-googleanalytics == 0.1'    \
-                'sphinxcontrib-googlechart     == 0.2.1'  \
-                'sphinxcontrib-googlemaps      == 0.1.0'  \
-                'sphinxcontrib-libreoffice     == 0.2'    \
-                'sphinxcontrib-nwdiag          == 0.9.5'  \
-                'sphinxcontrib-plantuml        == 0.8.1'  \
-                'sphinxcontrib-seqdiag         == 0.8.5'  \
-                'livereload                    == 2.5.1'
-
-COPY files/opt/plantuml/*  /opt/plantuml/
-COPY files/usr/local/bin/* /usr/local/bin/
+COPY files/usr/local/bin/*     /usr/local/bin/
+COPY files/usr/share/ddidier/* /usr/share/ddidier/
 
 RUN chown root:root /usr/local/bin/* \
  && chmod 755 /usr/local/bin/*
 
-ENV DATA_DIR=/doc \
-    JAVA_HOME=/usr/lib/jvm/java-8-oracle
+ENV DATA_DIR=/doc
 
 WORKDIR $DATA_DIR
 

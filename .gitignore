@@ -1,2 +1,2 @@
-tests/html/build
-tests/pdf/build
+tests/build
+tests/logs/*.log
