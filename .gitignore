@@ -1,2 +1,3 @@
-tests/build
-tests/logs/*.log
+/tests/build
+/tests/logs/*.log
+/tests/source/index.rst
