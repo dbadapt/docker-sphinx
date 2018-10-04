@@ -66,7 +66,7 @@ cat $SCRIPT_DIR/sphinx-init-conf.py >> $configuration_file
 
 # ----------------------------------------------------- Add some resources -----
 
-site_packages_dir=/usr/local/lib/python2.7/site-packages
+site_packages_dir=/usr/local/lib/python3.6/site-packages
 
 sphinx_init_log "Adding resources"
 

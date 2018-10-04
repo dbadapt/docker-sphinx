@@ -1,5 +1,9 @@
 # NDD Docker Sphinx
 
+## Version 1.8.1-2
+
+- Fix `sphinx-init` script to use Python 3.6
+
 ## Version 1.8.1-1
 
 - New versioning scheme `<SPHINX_VERSION>-<DOCKER_IMAGE_VERSION>`
