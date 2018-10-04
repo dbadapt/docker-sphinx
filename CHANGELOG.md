@@ -3,6 +3,7 @@
 ## Version 1.8.1-2
 
 - Fix `sphinx-init` script to use Python 3.6
+- Update documentation: initialisation
 
 ## Version 1.8.1-1
 

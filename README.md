@@ -73,6 +73,8 @@ Sphinx will be executed inside the container by the `sphinx-doc` user which is c
 
 Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory. You should however use the provided `sphinx-init` script which first calls `sphinx-quickstart` then customizes the `Makefile` and the configuration file `conf.py`.
 
+**The directory `<HOST_DATA_DIR>` must already exist, otherwise the script will fail!**
+
 ```shell
 docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc sphinx-init
 ```
