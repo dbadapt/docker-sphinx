@@ -36,7 +36,7 @@ RUN mkdir -p /usr/share/man/man1 \
                 'sphinx-autobuild              == 0.7.1'    \
                 'sphinx_bootstrap_theme        == 0.6.5'    \
                 'sphinx-prompt                 == 1.0.0'    \
-                'sphinx_rtd_theme              == 0.4.1'    \
+                'sphinx_rtd_theme              == 0.4.2'    \
                 'sphinxcontrib-actdiag         == 0.8.5'    \
                 'sphinxcontrib-blockdiag       == 1.5.5'    \
                 'sphinxcontrib-excel-table     == 1.0.4'    \

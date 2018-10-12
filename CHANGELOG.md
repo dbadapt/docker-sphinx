@@ -1,5 +1,9 @@
 # NDD Docker Sphinx
 
+## Version 1.8.1-3
+
+- Update plugin `sphinx_rtd_theme` version to 0.4.2, restoring the search feature
+
 ## Version 1.8.1-2
 
 - Fix `sphinx-init` script to use Python 3.6
