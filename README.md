@@ -11,6 +11,8 @@
 1. [Configuration](#markdown-header-configuration)
     1. [Extensions](#markdown-header-extensions)
     1. [Install an extension](#markdown-header-install-an-extension)
+1. [Custom "extensions"](#custom-extensions)
+    1. [Git extension"](#git-extension)
 1. [Limitations](#markdown-header-limitations)
 
 
@@ -24,6 +26,7 @@ The image is based upon the official [python:3.6](https://hub.docker.com/_/pytho
 Besides the Sphinx documentation builder ([sphinx-doc](http://sphinx-doc.org)), this image contains:
 
 - [alabaster](https://pypi.python.org/pypi/alabaster)
+- [gitpython](https://pypi.python.org/pypi/gitpython)
 - [guzzle-sphinx-theme](https://pypi.python.org/pypi/guzzle_sphinx_theme)
 - [livereload](https://pypi.python.org/pypi/livereload)
 - [sphinx-autobuild](https://pypi.org/project/sphinx-autobuild)
@@ -147,6 +150,44 @@ extensions = [
     'a.sphinx.extension',
     'another.sphinx.extension',
 ]
+```
+
+
+
+## Custom "extensions"
+
+This should be extracted in actual Sphinx extensions...
+
+For now, the Python code is stored in the subdirectory `/_python` and is copied when calling `sphinx-init`.
+
+### Git extension
+
+This pseudo extension reads the properties of a Git repository to display in the left navigation panel and in the footer:
+
+- the current time of the build if any file is not committed or untracked, or
+- the name of the tag associated with the last commit if it exists, or
+- the hash of the last commit
+
+Enable it by uncommenting in the file `conf.py`:
+
+```python
+# Must be defined somewhere
+html_context = {}
+
+import os.path
+source_directory = os.path.dirname(os.path.realpath(__file__))
+python_directory = os.path.join(source_directory, '_python')
+exec(open(os.path.join(python_directory, 'sphinx-git.py'), 'rb').read())
+```
+
+You now have two options depending on your setup:
+
+- the directory `<HOST_DATA_DIR>` mounted in `/doc` must be a Git repository, or
+- the directory `<HOST_GIT_DIR>` mounted in `/doc-git` must be a Git repository
+
+```shell
+docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=`id -u $USER` ddidier/sphinx-doc make html
+docker run -i -v <HOST_DATA_DIR>:/doc -v <HOST_GIT_DIR>:/doc-git -e USER_ID=`id -u $USER` ddidier/sphinx-doc make html
 ```
 
 

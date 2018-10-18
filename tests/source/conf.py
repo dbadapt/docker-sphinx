@@ -97,6 +97,12 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
+html_context = {}
+html_favicon = '_static/ddidier-favicon.ico'
+html_logo = '_static/ddidier-logo.png'
+html_show_sourcelink = False
+html_show_sphinx = False
+
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
@@ -175,7 +181,6 @@ epub_exclude_files = ['search.html']
 
 
 
-
 # == NDD DOCKER SPHINX - OVERRIDE ============================================
 
 # -- General configuration ---------------------------------------------------
@@ -223,3 +228,16 @@ from recommonmark.parser import CommonMarkParser
 source_parsers = {
     '.md': CommonMarkParser,
 }
+
+# -- Pseudo extensions -------------------------------------------------------
+
+# Uncomment to enable Git parsing
+# TODO: extract in a Sphinx plugin
+#
+# Must be defined somewhere
+# html_context = {}
+#
+# import os.path
+# source_directory = os.path.dirname(os.path.realpath(__file__))
+# python_directory = os.path.join(source_directory, '_python')
+# exec(open(os.path.join(python_directory, 'sphinx-git.py'), 'rb').read())

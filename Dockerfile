@@ -21,6 +21,7 @@ RUN mkdir -p /usr/share/man/man1 \
         dvipng graphviz \
         openjdk-8-jre-headless \
         texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk \
+        git \
     \
  && PLANTUML_VERSION=1.2018.11 \
  && mkdir /opt/plantuml \
@@ -29,6 +30,7 @@ RUN mkdir -p /usr/share/man/man1 \
     \
  && pip install 'Sphinx                        == 1.8.1'    \
                 'alabaster                     == 0.7.11'   \
+                'gitpython                     == 2.1.11'   \
                 'guzzle_sphinx_theme           == 0.7.11'   \
                 'livereload                    == 2.5.2'    \
                 'recommonmark                  == 0.4.0'    \
@@ -52,8 +54,9 @@ RUN mkdir -p /usr/share/man/man1 \
  && rm -rf /var/cache/* \
  && rm -rf /var/lib/apt/lists/*
 
-COPY files/usr/local/bin/*     /usr/local/bin/
-COPY files/usr/share/ddidier/* /usr/share/ddidier/
+COPY files/opt/ddidier/sphinx/python/*  /opt/ddidier/sphinx/python/
+COPY files/usr/local/bin/*              /usr/local/bin/
+COPY files/usr/share/ddidier/*          /usr/share/ddidier/
 
 RUN chown root:root /usr/local/bin/* \
  && chmod 755 /usr/local/bin/*

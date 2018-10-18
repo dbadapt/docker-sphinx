@@ -50,3 +50,16 @@ from recommonmark.parser import CommonMarkParser
 source_parsers = {
     '.md': CommonMarkParser,
 }
+
+# -- Pseudo extensions -------------------------------------------------------
+
+# Uncomment to enable Git parsing
+# TODO: extract in a Sphinx plugin
+#
+# Must be defined somewhere
+# html_context = {}
+#
+# import os.path
+# source_directory = os.path.dirname(os.path.realpath(__file__))
+# python_directory = os.path.join(source_directory, '_python')
+# exec(open(os.path.join(python_directory, 'sphinx-git.py'), 'rb').read())

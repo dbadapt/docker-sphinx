@@ -75,3 +75,9 @@ excel_table_dir=$site_packages_dir/sphinxcontrib/excel_table
 cp -n $excel_table_dir/resources/_templates/layout.html            $source_dir/_templates/
 cp -n $excel_table_dir/resources/_static/handsontable.full.min.js  $source_dir/_static/
 cp -n $excel_table_dir/resources/_static/handsontable.full.min.css $source_dir/_static/
+
+# -------------------------------------------------- Add pseudo extensions -----
+
+sphinx_init_log "Adding pseudo extensions"
+mkdir $source_dir/_python/
+cp -n /opt/ddidier/sphinx/python/* $source_dir/_python/
