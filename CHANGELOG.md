@@ -1,5 +1,9 @@
 # NDD Docker Sphinx
 
+## Version 1.8.1-4
+
+- Add GIT pseudo extension for hash, tag and date
+
 ## Version 1.8.1-3
 
 - Update plugin `sphinx_rtd_theme` version to 0.4.2, restoring the search feature
