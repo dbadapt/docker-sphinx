@@ -20,7 +20,8 @@ RUN mkdir -p /usr/share/man/man1 \
         curl make \
         dvipng graphviz \
         openjdk-8-jre-headless \
-        texlive-latex-recommended texlive-fonts-recommended texlive-latex-extra latexmk \
+        latexmk texlive-fonts-recommended texlive-latex-extra texlive-latex-recommended \
+        texlive-lang-french \
         git \
     \
  && PLANTUML_VERSION=1.2018.11 \
