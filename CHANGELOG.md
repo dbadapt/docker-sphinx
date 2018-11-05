@@ -1,5 +1,9 @@
 # NDD Docker Sphinx
 
+## Version 1.8.1-5
+
+- Add French language support for PDF
+
 ## Version 1.8.1-4
 
 - Add GIT pseudo extension for hash, tag and date
