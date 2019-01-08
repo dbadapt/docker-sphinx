@@ -11,7 +11,7 @@ if [ -z ${USER_ID+x} ]; then
     echo -e "$BOLD_RED"
     echo -e " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo -e " ┃ WARNING: environment variable USER_ID is not set (default is 9001)        ┃"
-    echo -e " ┃ USAGE: docker run ... -e USER_ID=$(id -u \$USER) ...                       ┃"
+    echo -e " ┃ USAGE: docker run ... -e USER_ID=\$(id -u \$USER) ...                       ┃"
     echo -e " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo -e "$TXT_RESET"
 fi
