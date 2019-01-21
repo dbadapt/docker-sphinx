@@ -24,7 +24,7 @@ RUN mkdir -p /usr/share/man/man1 \
         texlive-lang-french \
         git \
     \
- && PLANTUML_VERSION=1.2018.11 \
+ && PLANTUML_VERSION=1.2019.0 \
  && mkdir /opt/plantuml \
  && curl https://netix.dl.sourceforge.net/project/plantuml/${PLANTUML_VERSION}/plantuml.${PLANTUML_VERSION}.jar --output /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar \
  && ln -s /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar /opt/plantuml/plantuml.jar \
