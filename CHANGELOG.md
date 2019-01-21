@@ -1,5 +1,10 @@
 # NDD Docker Sphinx
 
+## Version 1.8.3-1
+
+- Update Sphinx version to 1.8.3 and plugins versions
+- Update PlanPlantUML version to 1.2019.0
+
 ## Version 1.8.1-5
 
 - Add French language support for PDF
@@ -22,7 +27,6 @@
 - New versioning scheme `<SPHINX_VERSION>-<DOCKER_IMAGE_VERSION>`
 - Update Sphinx version to 1.8.1 and plugins versions
 - Update Python version to 3.6.6
-- Update PlantUML version
 - Update documentation: how to install a new extension
 - Add pluggins:
   - `sphinxcontrib-excel-table`
