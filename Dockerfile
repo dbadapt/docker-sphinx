@@ -29,8 +29,8 @@ RUN mkdir -p /usr/share/man/man1 \
  && curl https://netix.dl.sourceforge.net/project/plantuml/${PLANTUML_VERSION}/plantuml.${PLANTUML_VERSION}.jar --output /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar \
  && ln -s /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar /opt/plantuml/plantuml.jar \
     \
- && pip install 'Sphinx                        == 1.8.1'    \
-                'alabaster                     == 0.7.11'   \
+ && pip install 'Sphinx                        == 1.8.3'    \
+                'alabaster                     == 0.7.12'   \
                 'gitpython                     == 2.1.11'   \
                 'guzzle_sphinx_theme           == 0.7.11'   \
                 'livereload                    == 2.5.2'    \
@@ -48,7 +48,7 @@ RUN mkdir -p /usr/share/man/man1 \
                 'sphinxcontrib-googlechart     == 0.2.1'    \
                 'sphinxcontrib-googlemaps      == 0.1.0'    \
                 'sphinxcontrib-nwdiag          == 0.9.5'    \
-                'sphinxcontrib-plantuml        == 0.12'     \
+                'sphinxcontrib-plantuml        == 0.14'     \
                 'sphinxcontrib-seqdiag         == 0.8.5'    \
     \
  && apt-get autoremove -y \
