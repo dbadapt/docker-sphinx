@@ -121,6 +121,12 @@ docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make ht
 docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make latexpdf
 ```
 
+### Tips & Tricks
+
+If you need the directory `<HOST_DATA_DIR>` to NOT be the root of the documentation, change the `make` directory with `-C`.
+The syntax is then `make -C /some/directory/ command`.
+Please see the pseudo [Git extension below](#git-extension) for an example.
+
 
 
 ## Configuration
@@ -180,15 +186,35 @@ python_directory = os.path.join(source_directory, '_python')
 exec(open(os.path.join(python_directory, 'sphinx-git.py'), 'rb').read())
 ```
 
-You now have two options depending on your setup:
+This extension requires access to the `.git` directory:
 
-- the directory `<HOST_DATA_DIR>` mounted in `/doc` must be a Git repository, or
-- the directory `<HOST_GIT_DIR>` mounted in `/doc-git` must be a Git repository
+1. if the documentation is at the same level than the `.git` directory:
 
-```shell
-docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make html
-docker run -i -v <HOST_DATA_DIR>:/doc -v <HOST_GIT_DIR>:/doc-git -e USER_ID=$UID ddidier/sphinx-doc make html
-```
+    ```shell
+    # /my-project
+    # ├── .git
+    # ├── Makefile
+    # ├── build
+    # └── source
+    #     └── conf.py
+
+    docker run -i -v /my-project:/doc -e USER_ID=$UID ddidier/sphinx-doc make html
+    ```
+
+2. if the documentation is not at the same level than the `.git` directory:
+
+    ```shell
+    # /my-project
+    # ├── .git
+    # ├── sources
+    # └── documentation
+    #     ├── Makefile
+    #     ├── build
+    #     └── source
+    #         └── conf.py
+
+    docker run -i -v /my-project:/doc -e USER_ID=$UID ddidier/sphinx-doc make -C /doc/documentation html
+    ```
 
 
 

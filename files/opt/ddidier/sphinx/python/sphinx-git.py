@@ -12,18 +12,14 @@ import time
 from sphinx.util import logging
 logger = logging.getLogger(__name__)
 
-# Create a GIT repository if one does exist in '/doc' or in '/doc-git'
+# Create a GIT repository object if one does exist in '/doc'
 documentation_directory = '/doc'
-documentation_git_directory = '/doc-git'
 
 if os.path.isdir(os.path.join(documentation_directory, '.git')):
     git_repository = git.Repo(documentation_directory)
     logger.info("Git repository found in '%s' directory" % documentation_directory)
-elif os.path.isdir(os.path.join(documentation_git_directory, '.git')):
-    logger.info("Git repository found in '%s' directory" % documentation_git_directory)
-    git_repository = git.Repo(documentation_git_directory)
 else:
-    logger.warning("Git repository not found in '%s' or '%s'. Skipping..." % (documentation_directory, documentation_git_directory))
+    logger.warning("Git repository not found in '%s'. Skipping..." % documentation_directory)
     git_repository = None
 
 # Proceed only if there is a Git repository
