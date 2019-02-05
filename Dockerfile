@@ -5,7 +5,7 @@
 #
 # docker build -t ddidier/sphinx-doc .
 
-FROM       python:3.6.6-slim-stretch
+FROM       python:3.6.8-slim-stretch
 MAINTAINER David DIDIER
 
 # OpenJDK installation issue
