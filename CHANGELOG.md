@@ -1,5 +1,10 @@
 # NDD Docker Sphinx
 
+## Version 1.8.4-2
+
+- Remove the 'doc-git' volume
+- Enhance documentation
+
 ## Version 1.8.4-1
 
 - Update Sphinx version to 1.8.4
