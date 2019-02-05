@@ -29,7 +29,7 @@ RUN mkdir -p /usr/share/man/man1 \
  && curl https://netix.dl.sourceforge.net/project/plantuml/${PLANTUML_VERSION}/plantuml.${PLANTUML_VERSION}.jar --output /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar \
  && ln -s /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar /opt/plantuml/plantuml.jar \
     \
- && pip install 'Sphinx                        == 1.8.3'    \
+ && pip install 'Sphinx                        == 1.8.4'    \
                 'alabaster                     == 0.7.12'   \
                 'gitpython                     == 2.1.11'   \
                 'guzzle_sphinx_theme           == 0.7.11'   \
