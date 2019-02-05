@@ -44,7 +44,8 @@ Besides the Sphinx documentation builder ([sphinx-doc](http://sphinx-doc.org)), 
 - [sphinxcontrib-plantuml](https://pypi.python.org/pypi/sphinxcontrib-plantuml)
 - [sphinxcontrib-seqdiag](https://pypi.python.org/pypi/sphinxcontrib-seqdiag)
 
-The versioning scheme of the Docker image is `<SPHINX_VERSION>-<DOCKER_IMAGE_VERSION>`, e.g. `1.8.1-9` for the 9th version of the Docker image using Sphinx 1.8.1.
+The versioning scheme of this Docker image is `<SPHINX_VERSION>-<DOCKER_IMAGE_VERSION>`.
+For example, `1.8.1-9` stands for the 9th version of the Docker image using Sphinx 1.8.1.
 
 
 
@@ -68,13 +69,21 @@ docker pull ddidier/sphinx-doc
 
 ## Usage
 
-The documentation directory on the host `<HOST_DATA_DIR>` must be mounted as a volume under `/doc` in the container. Use `-v <HOST_DATA_DIR>:/doc` to use a specific documentation directory or `-v $(pwd):/doc` to use the current directory as the documentation directory.
+The documentation directory on the host `<HOST_DATA_DIR>` must be mounted as a volume under `/doc` in the container.
+Use `-v <HOST_DATA_DIR>:/doc` to use a specific documentation directory or `-v $(pwd):/doc` to use the current directory as the documentation directory.
 
-Sphinx will be executed inside the container by the `sphinx-doc` user which is created by the Docker entry point. You **must** pass to the container the environment variable `USER_ID` set to the UID of the user the files will belong to. For example ``-e USER_ID=$UID ``.
+Sphinx will be executed inside the container by the `sphinx-doc` user which is created by the Docker entry point.
+You **must** pass to the container the environment variable `USER_ID` set to the UID of the user the files will belong to.
+This is the ``-e USER_ID=$UID `` part in the examples of this documentation.
 
 ### Initialisation
 
-Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory. You should however use the provided `sphinx-init` script which first calls `sphinx-quickstart` then customizes the `Makefile` and the configuration file `conf.py`.
+Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory.
+You should however use the custom tailored `sphinx-init` script which:
+
+- calls `sphinx-quickstart`
+- customizes the `Makefile` (`livehtml` target)
+- customizes the configuration file `conf.py` (offcial and custom extensions, markdown support, theme)
 
 **The directory `<HOST_DATA_DIR>` must already exist, otherwise the script will fail!**
 
@@ -82,7 +91,8 @@ Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html)
 docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc sphinx-init
 ```
 
-All arguments accepted by [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) are passed to `sphinx-init`. For example:
+All arguments accepted by [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) are passed to `sphinx-init`.
+For example, you may want to pass the project name on the command line:
 
 ```shell
 docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc sphinx-init --project my-documentation
@@ -90,56 +100,82 @@ docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc sphinx
 
 ### Interactive
 
+The so-called *interactive mode* is when you issue commands from inside the container.
+
 ```shell
 docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc
 ```
 
 You should now be in the `/doc` directory, otherwise just `cd` to `/doc`.
 
-To create a new Sphinx project, call `sphinx-init`.
-
-To create HTML documents, call `make html`.
+To see all the official targets, call `make help`.
 
 To create a PDF document, call `make latexpdf`.
 
-To watch for changes and create HTML documents dynamically, call `make livehtml` with a port binding:
+To create HTML documents, call `make html`.
+
+### Non interactive
+
+The so-called *non-interactive mode* is when you issue commands from the host directly.
+
+To see all the official targets, call:
+
+```shell
+docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make help
+```
+
+To create a PDF document, call `make latexpdf`.
+
+```shell
+docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make latexpdf
+```
+
+To create HTML documents, call `make html`.
+
+```shell
+docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make html
+```
+
+To create HTML documents and watch for changes, call `make livehtml`:
 
 ```shell
 docker run -it -v <HOST_DATA_DIR>:/doc -p 8000:8000 -e USER_ID=$UID ddidier/sphinx-doc make livehtml
+#                                         ^^^^
+#                                         open your browser at http://localhost:8000/
 ```
 
-To trigger a full build while in watch mode, issue from the `<HOST_DATA_DIR>` folder:
+To trigger a full build while in watch mode, issue from the `<HOST_DATA_DIR>` folder on the host:
 
 ```shell
 rm -rf build && touch source/conf.py
 ```
 
-### Non interactive
-
-```shell
-docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make html
-docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make latexpdf
-```
-
 ### Tips & Tricks
 
 If you need the directory `<HOST_DATA_DIR>` to NOT be the root of the documentation, change the `make` directory with `-C`.
-The syntax is then `make -C /some/directory/ command`.
+Previous commands such as `make target` become `make -C /some/directory/ target`.
 Please see the pseudo [Git extension below](#git-extension) for an example.
 
 
 
 ## Configuration
 
-**Warning: some variables, like the `extensions` variable, are overriden at the end of the `conf.py` file.**
+**Warning: to simplify the `sphinx-init` script, some variables are overriden at the end of the `conf.py` file.**
+This is most notably the case of the `extensions` and `html_theme` variables.
 
-### Extensions
+### Bundled extensions
 
-To enable or disable a packaged extension, comment or uncomment the line in your `conf.py`.
+This image comes with a number of already bundled extensions.
 
-### Install an extension
+To enable a bundled extension, simply uncomment the associated line in your `conf.py`.
 
-To install a new extension, first extend the `Dockerfile`:
+To disable a bundled extension, simply comment the associated line in your `conf.py`.
+
+### Other extensions
+
+IF you want to use an extension which is not already bundled with this image, you need to:
+
+First extend the image by creating a new `Dockerfile`:
 
 ```docker
 FROM ddidier/sphinx-doc:latest
@@ -148,7 +184,7 @@ RUN pip install 'a-sphinx-extension       == A.B.C' \
                 'another-sphinx-extension == X.Y.Z'
 ```
 
-Then add a line in your `conf.py`:
+Then add a line in your `conf.py` referencing the extension:
 
 ```python
 extensions = [
@@ -164,7 +200,7 @@ extensions = [
 
 This should be extracted in actual Sphinx extensions...
 
-For now, the Python code is stored in the subdirectory `/_python` and is copied when calling `sphinx-init`.
+At the time being, the Python code is stored in the subdirectory `/_python` and is copied when calling `sphinx-init`.
 
 ### Git extension
 
@@ -174,7 +210,7 @@ This pseudo extension reads the properties of a Git repository to display in the
 - the name of the tag associated with the last commit if it exists, or
 - the hash of the last commit
 
-Enable it by uncommenting in the file `conf.py`:
+Enable it by uncommenting the following lines in your `conf.py`:
 
 ```python
 # Must be defined somewhere
