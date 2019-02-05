@@ -1,5 +1,10 @@
 # NDD Docker Sphinx
 
+## Version 1.8.4-1
+
+- Update Sphinx version to 1.8.4
+- Update Python version to 3.6.8
+
 ## Version 1.8.3-2
 
 - Fix [#4 Don't fail when the user already exists](https://bitbucket.org/ndd-docker/ndd-docker-sphinx/issues/4)
