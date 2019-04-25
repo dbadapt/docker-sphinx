@@ -1,5 +1,13 @@
 # NDD Docker Sphinx
 
+## Version 1.8.5-1
+
+- Update Sphinx version to 1.8.5 and plugins versions
+- Add utility scripts
+- Enable LiveReload on multiple projects at the same time
+- Move initialization configuration file to its own directory
+- Add test for project initialization
+
 ## Version 1.8.4-2
 
 - Remove the 'doc-git' volume
