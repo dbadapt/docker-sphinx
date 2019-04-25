@@ -1,3 +1,6 @@
-/tests/build
-/tests/logs/*.log
-/tests/source/index.rst
+/tests/test-build/build
+/tests/test-build/logs/*.log
+/tests/test-build/source/index.rst
+
+/tests/test-init/build
+/tests/test-init/logs/*.log
