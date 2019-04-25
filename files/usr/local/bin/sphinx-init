@@ -39,10 +39,12 @@ sphinx_init_log "  - Copying '$makefile' to '$makefile.bak'"
 cp -n $makefile $makefile.bak
 
 sphinx_init_log "  - Adding 'livehtml' target to Makefile"
-echo -e ""                                                                                                      >> "$makefile"
-echo -e ""                                                                                                      >> "$makefile"
-echo -e "livehtml:"                                                                                             >> "$makefile"
-echo -e "\tsphinx-autobuild -b html --host 0.0.0.0 \$(ALLSPHINXOPTS) \"\$(SOURCEDIR)\" \"\$(BUILDDIR)/html\""   >> "$makefile"
+echo -e ""                                                                                                                          >> "$makefile"
+echo -e ""                                                                                                                          >> "$makefile"
+echo -e "SPHINXPORT = 8000"                                                                                                         >> "$makefile"
+echo -e ""                                                                                                                          >> "$makefile"
+echo -e "livehtml:"                                                                                                                 >> "$makefile"
+echo -e "\tsphinx-autobuild -b html --host 0.0.0.0 --port \$(SPHINXPORT) \$(ALLSPHINXOPTS) \"\$(SOURCEDIR)\" \"\$(BUILDDIR)/html\"" >> "$makefile"
 
 # sphinx_init_log "  - Adding 'rinoh' target to Makefile"
 # echo -e ""                                                                      >> "$makefile"

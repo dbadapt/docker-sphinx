@@ -18,5 +18,7 @@ help:
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
+SPHINXPORT = 8000
+
 livehtml:
-	sphinx-autobuild -b html --host 0.0.0.0 $(ALLSPHINXOPTS) "$(SOURCEDIR)" "$(BUILDDIR)/html"
+	sphinx-autobuild -b html --host 0.0.0.0 --port $(SPHINXPORT) $(ALLSPHINXOPTS) "$(SOURCEDIR)" "$(BUILDDIR)/html"

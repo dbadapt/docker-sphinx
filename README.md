@@ -78,12 +78,14 @@ This is the ``-e USER_ID=$UID `` part in the examples of this documentation.
 
 ### Initialisation
 
-Sphinx provides the [`sphinx-quickstart`](http://sphinx-doc.org/invocation.html) script to create a skeleton of the documentation directory.
+Sphinx provides the [`sphinx-quickstart`](https://www.sphinx-doc.org/en/master/man/sphinx-quickstart.html) script to create a skeleton of the documentation directory.
 You should however use the custom tailored `sphinx-init` script which:
 
 - calls `sphinx-quickstart`
 - customizes the `Makefile` (`livehtml` target)
 - customizes the configuration file `conf.py` (offcial and custom extensions, markdown support, theme)
+- add some pseudo extensions (Git)
+- add some utility scripts
 
 **The directory `<HOST_DATA_DIR>` must already exist, otherwise the script will fail!**
 
@@ -98,7 +100,7 @@ For example, you may want to pass the project name on the command line:
 docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc sphinx-init --project my-documentation
 ```
 
-### Interactive
+### Interactive mode
 
 The so-called *interactive mode* is when you issue commands from inside the container.
 
@@ -114,7 +116,7 @@ To create a PDF document, call `make latexpdf`.
 
 To create HTML documents, call `make html`.
 
-### Non interactive
+### Non interactive mode
 
 The so-called *non-interactive mode* is when you issue commands from the host directly.
 
@@ -124,13 +126,13 @@ To see all the official targets, call:
 docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make help
 ```
 
-To create a PDF document, call `make latexpdf`.
+To create a PDF document, call `make latexpdf`:
 
 ```shell
 docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make latexpdf
 ```
 
-To create HTML documents, call `make html`.
+To create HTML documents, call `make html`:
 
 ```shell
 docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make html
@@ -139,9 +141,15 @@ docker run -i -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc make ht
 To create HTML documents and watch for changes, call `make livehtml`:
 
 ```shell
+# use the default port (i.e. 8000)
 docker run -it -v <HOST_DATA_DIR>:/doc -p 8000:8000 -e USER_ID=$UID ddidier/sphinx-doc make livehtml
 #                                         ^^^^
 #                                         open your browser at http://localhost:8000/
+
+# use a custom port (e.g. 12345)
+docker run -it -v <HOST_DATA_DIR>:/doc -p 12345:12345 -e USER_ID=$UID ddidier/sphinx-doc make SPHINXPORT=12345 livehtml
+#                                         ^^^^^                                               ^^^^^^^^^^^^^^^^
+#                                         open your browser at http://localhost:12345/        customize server port
 ```
 
 To trigger a full build while in watch mode, issue from the `<HOST_DATA_DIR>` folder on the host:
@@ -161,6 +169,7 @@ Please see the pseudo [Git extension below](#git-extension) for an example.
 ## Configuration
 
 **Warning: to simplify the `sphinx-init` script, some variables are overriden at the end of the `conf.py` file.**
+They appear twice in the file, so be sure to update the last one if needed.
 This is most notably the case of the `extensions` and `html_theme` variables.
 
 ### Bundled extensions
