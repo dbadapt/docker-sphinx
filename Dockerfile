@@ -24,12 +24,12 @@ RUN mkdir -p /usr/share/man/man1 \
         texlive-lang-french \
         git \
     \
- && PLANTUML_VERSION=1.2019.0 \
+ && PLANTUML_VERSION=1.2019.5 \
  && mkdir /opt/plantuml \
  && curl https://netix.dl.sourceforge.net/project/plantuml/${PLANTUML_VERSION}/plantuml.${PLANTUML_VERSION}.jar --output /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar \
  && ln -s /opt/plantuml/plantuml.${PLANTUML_VERSION}.jar /opt/plantuml/plantuml.jar \
     \
- && pip install 'Sphinx                        == 1.8.4'    \
+ && pip install 'Sphinx                        == 1.8.5'    \
                 'alabaster                     == 0.7.12'   \
                 'gitpython                     == 2.1.11'   \
                 'guzzle_sphinx_theme           == 0.7.11'   \
@@ -37,9 +37,9 @@ RUN mkdir -p /usr/share/man/man1 \
                 'recommonmark                  == 0.4.0'    \
                 'rinohtype                     == 0.2.1'    \
                 'sphinx-autobuild              == 0.7.1'    \
-                'sphinx_bootstrap_theme        == 0.6.5'    \
-                'sphinx-prompt                 == 1.0.0'    \
-                'sphinx_rtd_theme              == 0.4.2'    \
+                'sphinx_bootstrap_theme        == 0.7.1'    \
+                'sphinx-prompt                 == 1.1.0'    \
+                'sphinx_rtd_theme              == 0.4.3'    \
                 'sphinxcontrib-actdiag         == 0.8.5'    \
                 'sphinxcontrib-blockdiag       == 1.5.5'    \
                 'sphinxcontrib-excel-table     == 1.0.4'    \
@@ -48,7 +48,7 @@ RUN mkdir -p /usr/share/man/man1 \
                 'sphinxcontrib-googlechart     == 0.2.1'    \
                 'sphinxcontrib-googlemaps      == 0.1.0'    \
                 'sphinxcontrib-nwdiag          == 0.9.5'    \
-                'sphinxcontrib-plantuml        == 0.14'     \
+                'sphinxcontrib-plantuml        == 0.15'     \
                 'sphinxcontrib-seqdiag         == 0.8.5'    \
     \
  && apt-get autoremove -y \
