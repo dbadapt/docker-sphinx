@@ -120,6 +120,8 @@ To create HTML documents, call `make html`.
 
 The so-called *non-interactive mode* is when you issue commands from the host directly.
 
+#### Docker commands
+
 To see all the official targets, call:
 
 ```shell
@@ -146,7 +148,7 @@ docker run -it -v <HOST_DATA_DIR>:/doc -p 8000:8000 -e USER_ID=$UID ddidier/sphi
 #                                         ^^^^
 #                                         open your browser at http://localhost:8000/
 
-# use a custom port (e.g. 12345)
+# use a custom port (e.g. 12345) so you can have multiple builds at the same time
 docker run -it -v <HOST_DATA_DIR>:/doc -p 12345:12345 -e USER_ID=$UID ddidier/sphinx-doc make SPHINXPORT=12345 livehtml
 #                                         ^^^^^                                               ^^^^^^^^^^^^^^^^
 #                                         open your browser at http://localhost:12345/        customize server port
@@ -156,6 +158,26 @@ To trigger a full build while in watch mode, issue from the `<HOST_DATA_DIR>` fo
 
 ```shell
 rm -rf build && touch source/conf.py
+```
+
+#### Helper commands
+
+Helper scripts are provided to help you with common tasks.
+
+To create HTML documents, call:
+
+```shell
+./bin/make-html
+```
+
+To create HTML documents and watch for changes, call:
+
+```shell
+# use the default port (i.e. 8000)
+./bin/make-livehtml
+
+# use a custom port (e.g. 12345) so you can have multiple builds at the same time
+./bin/make-livehtml --port 12345 livehtml
 ```
 
 ### Tips & Tricks
