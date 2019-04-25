@@ -55,6 +55,7 @@ RUN mkdir -p /usr/share/man/man1 \
  && rm -rf /var/cache/* \
  && rm -rf /var/lib/apt/lists/*
 
+COPY files/opt/ddidier/sphinx/init/*    /opt/ddidier/sphinx/init/
 COPY files/opt/ddidier/sphinx/python/*  /opt/ddidier/sphinx/python/
 COPY files/usr/local/bin/*              /usr/local/bin/
 COPY files/usr/share/ddidier/*          /usr/share/ddidier/

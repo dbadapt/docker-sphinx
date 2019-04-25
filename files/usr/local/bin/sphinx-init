@@ -64,7 +64,7 @@ sphinx_init_log "  - Adding extensions"
 sphinx_init_log "  - Enabling Markdown"
 sphinx_init_log "  - Enabling TODOs"
 
-cat $SCRIPT_DIR/sphinx-init-conf.py >> $configuration_file
+cat /opt/ddidier/sphinx/init/conf.py >> $configuration_file
 
 # ----------------------------------------------------- Add some resources -----
 
@@ -83,3 +83,9 @@ cp -n $excel_table_dir/resources/_static/handsontable.full.min.css $source_dir/_
 sphinx_init_log "Adding pseudo extensions"
 mkdir $source_dir/_python/
 cp -n /opt/ddidier/sphinx/python/* $source_dir/_python/
+
+# ---------------------------------------------------- Add utility scripts -----
+
+sphinx_init_log "Adding utility scripts"
+mkdir $DATA_DIR/bin/
+cp -n /opt/ddidier/sphinx/bash/* $DATA_DIR/bin/
