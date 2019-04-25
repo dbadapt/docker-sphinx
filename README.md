@@ -1,23 +1,30 @@
 # NDD Docker Sphinx
 
-1. [Introduction](#markdown-header-introduction)
-1. [Installation](#markdown-header-installation)
-    1. [From source](#markdown-header-from-source)
-    1. [From Docker Hub](#markdown-header-from-docker-hub)
-1. [Usage](#markdown-header-usage)
-    1. [Initialisation](#markdown-header-initialisation)
-    1. [Interactive mode](#markdown-header-interactive-mode)
-    1. [Non interactive mode](#markdown-header-non-interactive-mode)
-    1. [Tips & Tricks](#markdown-header-tips-tricks)
-1. [Configuration](#markdown-header-configuration)
-    1. [Bundled extensions](#markdown-header-bundled-extensions)
-    1. [Other extensions](#markdown-header-other-extensions)
+<!-- MarkdownTOC -->
+
+1. [Introduction](#introduction)
+1. [Installation](#installation)
+    1. [From source](#from-source)
+    1. [From Docker Hub](#from-docker-hub)
+1. [Usage](#usage)
+    1. [Initialisation](#initialisation)
+    1. [Interactive mode](#interactive-mode)
+    1. [Non interactive mode](#non-interactive-mode)
+        1. [Docker commands](#docker-commands)
+        1. [Helper commands](#helper-commands)
+    1. [Tips & Tricks](#tips--tricks)
+1. [Configuration](#configuration)
+    1. [Bundled extensions](#bundled-extensions)
+    1. [Other extensions](#other-extensions)
 1. [Custom "extensions"](#custom-extensions)
-    1. [Git extension"](#git-extension)
-1. [Limitations](#markdown-header-limitations)
+    1. [Git extension](#git-extension)
+1. [Limitations](#limitations)
+
+<!-- /MarkdownTOC -->
 
 
 
+<a id="introduction"></a>
 ## Introduction
 
 A Docker image for the [Sphinx documentation](http://sphinx-doc.org) builder.
@@ -50,8 +57,10 @@ For example, `1.8.1-9` stands for the 9th version of the Docker image using Sphi
 
 
 
+<a id="installation"></a>
 ## Installation
 
+<a id="from-source"></a>
 ### From source
 
 ```shell
@@ -60,6 +69,7 @@ cd ndd-docker-sphinx
 docker build -t ddidier/sphinx-doc .
 ```
 
+<a id="from-docker-hub"></a>
 ### From Docker Hub
 
 ```shell
@@ -68,6 +78,7 @@ docker pull ddidier/sphinx-doc
 
 
 
+<a id="usage"></a>
 ## Usage
 
 The documentation directory on the host `<HOST_DATA_DIR>` must be mounted as a volume under `/doc` in the container.
@@ -77,6 +88,7 @@ Sphinx will be executed inside the container by the `sphinx-doc` user which is c
 You **must** pass to the container the environment variable `USER_ID` set to the UID of the user the files will belong to.
 This is the ``-e USER_ID=$UID `` part in the examples of this documentation.
 
+<a id="initialisation"></a>
 ### Initialisation
 
 Sphinx provides the [`sphinx-quickstart`](https://www.sphinx-doc.org/en/master/man/sphinx-quickstart.html) script to create a skeleton of the documentation directory.
@@ -101,6 +113,7 @@ For example, you may want to pass the project name on the command line:
 docker run -it -v <HOST_DATA_DIR>:/doc -e USER_ID=$UID ddidier/sphinx-doc sphinx-init --project my-documentation
 ```
 
+<a id="interactive-mode"></a>
 ### Interactive mode
 
 The so-called *interactive mode* is when you issue commands from inside the container.
@@ -117,10 +130,12 @@ To create a PDF document, call `make latexpdf`.
 
 To create HTML documents, call `make html`.
 
+<a id="non-interactive-mode"></a>
 ### Non interactive mode
 
 The so-called *non-interactive mode* is when you issue commands from the host directly.
 
+<a id="docker-commands"></a>
 #### Docker commands
 
 To see all the official targets, call:
@@ -161,6 +176,7 @@ To trigger a full build while in watch mode, issue from the `<HOST_DATA_DIR>` fo
 rm -rf build && touch source/conf.py
 ```
 
+<a id="helper-commands"></a>
 #### Helper commands
 
 Helper scripts are provided to help you with common tasks.
@@ -181,6 +197,7 @@ To create HTML documents and watch for changes, call:
 ./bin/make-livehtml --port 12345 livehtml
 ```
 
+<a id="tips--tricks"></a>
 ### Tips & Tricks
 
 If you need the directory `<HOST_DATA_DIR>` to NOT be the root of the documentation, change the `make` directory with `-C`.
@@ -189,12 +206,14 @@ Please see the pseudo [Git extension below](#git-extension) for an example.
 
 
 
+<a id="configuration"></a>
 ## Configuration
 
 **Warning: to simplify the `sphinx-init` script, some variables are overriden at the end of the `conf.py` file.**
 They appear twice in the file, so be sure to update the last one if needed.
 This is most notably the case of the `extensions` and `html_theme` variables.
 
+<a id="bundled-extensions"></a>
 ### Bundled extensions
 
 This image comes with a number of already bundled extensions.
@@ -203,6 +222,7 @@ To enable a bundled extension, simply uncomment the associated line in your `con
 
 To disable a bundled extension, simply comment the associated line in your `conf.py`.
 
+<a id="other-extensions"></a>
 ### Other extensions
 
 IF you want to use an extension which is not already bundled with this image, you need to:
@@ -228,12 +248,14 @@ extensions = [
 
 
 
+<a id="custom-extensions"></a>
 ## Custom "extensions"
 
 This should be extracted in actual Sphinx extensions...
 
 At the time being, the Python code is stored in the subdirectory `/_python` and is copied when calling `sphinx-init`.
 
+<a id="git-extension"></a>
 ### Git extension
 
 This pseudo extension reads the properties of a Git repository to display in the left navigation panel and in the footer:
@@ -286,6 +308,7 @@ This extension requires access to the `.git` directory:
 
 
 
+<a id="limitations"></a>
 ## Limitations
 
 - PDF generation does not work when including Markdown file using `recommonmark`.
