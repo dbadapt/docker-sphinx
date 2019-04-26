@@ -1,9 +1,6 @@
 #! /bin/bash
 
 # ------------------------------------------------------------------------------
-# VERSION 0.2.0
-# SEE https://bitbucket.org/ndd-docker/ndd-docker-sphinx/src/master/files/opt/ddidier/sphinx/bash/
-#
 # Run Sphinx in live HTML mode. Sphinx will watch the project directory and
 # rebuild the documentation when a change is detected. The documentation will
 # be available at http://localhost:<port>. The default port is 8000.

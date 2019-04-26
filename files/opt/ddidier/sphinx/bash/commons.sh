@@ -1,9 +1,6 @@
 #! /bin/bash
 
 # ------------------------------------------------------------------------------
-# VERSION 0.2.0
-# SEE https://bitbucket.org/ndd-docker/ndd-docker-sphinx/src/master/files/opt/ddidier/sphinx/bash/
-#
 # This file is sourced by the scripts in the same directory.
 # ------------------------------------------------------------------------------
 
