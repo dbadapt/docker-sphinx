@@ -244,4 +244,4 @@ ddidier_sphinxdoc_image_tag = '0123456789ABCDEF'
 # The Git tag of the image that generated this project
 # This is the most recent tag if the image is 'latest'
 # Hopefully it will be (manually) updated while releasing...
-ddidier_sphinxdoc_git_tag = '1.8.5-1'
+ddidier_sphinxdoc_git_tag = '1.8.5-2'

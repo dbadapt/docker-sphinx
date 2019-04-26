@@ -1,5 +1,12 @@
 # NDD Docker Sphinx
 
+## Version 1.8.5-2
+
+- Add development section to the README
+- Add references of the Docker image having generated the project to the configuration
+- Remove version from utility scripts
+- Fix summary in README to be compatible with Docker Hub
+
 ## Version 1.8.5-1
 
 - Update Sphinx version to 1.8.5 and plugins versions
