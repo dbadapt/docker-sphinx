@@ -19,6 +19,9 @@
 1. [Custom "extensions"](#custom-extensions)
     1. [Git extension](#git-extension)
 1. [Limitations](#limitations)
+1. [Development](#development)
+    1. [Testing](#testing)
+    1. [Releasing](#releasing)
 
 <!-- /MarkdownTOC -->
 
@@ -313,3 +316,32 @@ This extension requires access to the `.git` directory:
 
 - PDF generation does not work when including Markdown file using `recommonmark`.
 - PDF generation does not take into account Excel tables.
+
+
+
+<a id="development"></a>
+## Development
+
+<a id="testing"></a>
+### Testing
+
+Some tests are provided which cover:
+
+- project initialisation with `./tests/test-init/test.sh`
+- documentation generation with `./tests/test-build/test.sh`
+
+The script `./tests/test.sh` combines all the previous tests.
+
+<a id="releasing"></a>
+### Releasing
+
+Do not forget to:
+
+1. update the changelog with all the new features and fixes
+2. update the variable `ddidier_sphinxdoc_git_tag` in `files/opt/ddidier/sphinx/init/conf.py`
+3. create the new Docker image
+4. run the tests
+5. create a Git commit named `Release <SPHINX_VERSION>-<DOCKER_IMAGE_VERSION>`
+6. push the master branch to the remote origin
+7. tag the last commit with `Release <SPHINX_VERSION>-<DOCKER_IMAGE_VERSION>`
+8. push the tag to the remote origin
