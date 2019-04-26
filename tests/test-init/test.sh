@@ -26,6 +26,8 @@ function main() {
     # get rid of the generation date
     sed -i -E 's/(sphinx-quickstart on) .+/\1 XXXXXXXXXX./g' $SCRIPT_DIR/build/source/index.rst
     sed -i -E 's/(sphinx-quickstart on) .+/\1 XXXXXXXXXX./g' $SCRIPT_DIR/build/build/html/_sources/index.rst.txt
+    # get rid of the image tag
+    sed -i -E "s/(ddidier_sphinxdoc_image_tag =) '[0-9a-f]+'/\1 '0123456789ABCDEF'/g" $SCRIPT_DIR/build/source/conf.py
 
     # compute differences
     local delta=$(diff -r --exclude "doctrees" $SCRIPT_DIR/build $SCRIPT_DIR/expected)

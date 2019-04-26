@@ -66,6 +66,9 @@ sphinx_init_log "  - Enabling TODOs"
 
 cat /opt/ddidier/sphinx/init/conf.py >> $configuration_file
 
+image_tag=$(cat /proc/self/cgroup | grep "memory:/docker/" | tr '/' '\n' | tail -n 1)
+sed -i -E 's/(ddidier_sphinxdoc_image_tag =) .*/\1 '"'$image_tag'"'/' $configuration_file
+
 # ----------------------------------------------------- Add some resources -----
 
 site_packages_dir=/usr/local/lib/python3.6/site-packages

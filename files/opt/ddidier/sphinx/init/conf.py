@@ -63,3 +63,12 @@ source_parsers = {
 # source_directory = os.path.dirname(os.path.realpath(__file__))
 # python_directory = os.path.join(source_directory, '_python')
 # exec(open(os.path.join(python_directory, 'sphinx-git.py'), 'rb').read())
+
+# -- Generator properties ----------------------------------------------------
+
+# The Docker tag of the image that generated this project
+ddidier_sphinxdoc_image_tag = 'unknown'
+# The Git tag of the image that generated this project
+# This is the most recent tag if the image is 'latest'
+# Hopefully it will be (manually) updated while releasing...
+ddidier_sphinxdoc_git_tag = '1.8.5-1'
